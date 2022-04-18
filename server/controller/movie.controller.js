@@ -43,7 +43,7 @@ exports.updateMovie = async (req, res) => {
                     WHERE movieId = $2
             RETURNING *
         `,
-         [movieName])
+         [movieName, id])
          res.json({message: `Movie with id ${id} is succesfully updated`, updatedRow: result.rows[0]});
     } catch (err) {
          res.status(500).json({message: err.message});
