@@ -24,14 +24,13 @@ exports.addTicket = async (req, res) => {
         const {showId, hallNo, employeeId, seatNo, price} = req.body;
         const newEmp = await db.query(`INSERT INTO ticket (
             showId, 
-            hallNo, 
             employeeId, 
             seatNo, 
             price
             ) 
-            VALUES($1, $2, $3, $4, $5) 
+            VALUES($1, $2, $3, $4) 
             RETURNING *`, 
-        [showId, hallNo, employeeId, seatNo, price]);
+        [showId, employeeId, seatNo, price]);
         res.json(newEmp.rows[0]);
     } catch (err) {
         res.status(500).json({message: err.message});
@@ -40,19 +39,19 @@ exports.addTicket = async (req, res) => {
 
 exports.updateTicket = async (req, res) => {
     try {
-        const {showId, hallNo, employeeId, seatNo, price} = req.body;
+        const {showId, employeeId, seatNo, price} = req.body;
         const {id} = req.params;
         const result = await db.query(`UPDATE ticket SET
                 showId = $1,
-                hallNo= $2,
-                employeeId = $3,
-                seatNo = $4,
-                price = $5
-            WHERE ticketId = $6
+                employeeId = $2,
+                seatNo = $3,
+                price = $4
+            WHERE ticketId = $5
             RETURNING *
         `,
          [showId, hallNo, employeeId, seatNo, price,id])
-         res.json({message: `Ticket with id ${id} is succesfully updated`, updatedRow: result.rows[0]});
+
+        res.json({message: `Ticket with id ${id} is succesfully updated`, updatedRow: result.rows[0]});
     } catch (err) {
          res.status(500).json({message: err.message});
     }

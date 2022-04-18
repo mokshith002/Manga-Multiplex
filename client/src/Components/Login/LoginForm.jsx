@@ -1,4 +1,4 @@
-require("dotenv").config();
+// require("dotenv").config();
 import axios from 'axios';
 import React, {useState} from 'react';
 import { useNavigate, Link } from 'react-router-dom';
@@ -15,12 +15,10 @@ export default function LoginForm() {
     const navigate = useNavigate();
 
     const submitLogin = () => {
-        let Email = document.getElementById("logMail").value;
-        let Pass = document.getElementById("logPass").value;
-        axios.post(`${URL}/employe/login`, formData)
+        axios.get(`${URL}/employee/authenticate/details`, formData)
             .then(res => {
                 if (res.data.success) {
-                    localStorage.setItem("userId", res.data.userID);
+                    localStorage.setItem("userId", res.data.empId);
                     navigate('/');
                 }
                 else {
@@ -34,7 +32,8 @@ export default function LoginForm() {
 
     function handleSubmit(event){
         event.preventDefault();
-        submitLogin();
+        // submitLogin();
+        console.log(formData);
     }
 
     function handleChange(event){
