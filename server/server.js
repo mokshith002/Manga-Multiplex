@@ -6,6 +6,8 @@ const employeeRoutes = require('./routes/employee.routes')
 const theaterRoutes = require('./routes/theater.routes')
 const movieRoutes = require('./routes/movie.routes')
 const ticketRoutes = require('./routes/ticket.routes')
+const showRoutes = require('./routes/show.routes')
+const hallRoutes = require('./routes/hall.routes')
 
 const app = express();
 
@@ -16,6 +18,8 @@ app.use('/employees', employeeRoutes);
 app.use('/theater', theaterRoutes);
 app.use('/movie', movieRoutes);
 app.use('/ticket', ticketRoutes);
+app.use('/show', showRoutes);
+app.use('/hall', hallRoutes);
 
 const port = process.env.PORT || 3001;
 app.listen(port, () => {

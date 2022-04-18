@@ -51,7 +51,7 @@ exports.updateTicket = async (req, res) => {
             WHERE ticketId = $6
             RETURNING *
         `,
-         [showId, hallNo, employeeId, seatNo, price])
+         [showId, hallNo, employeeId, seatNo, price,id])
          res.json({message: `Ticket with id ${id} is succesfully updated`, updatedRow: result.rows[0]});
     } catch (err) {
          res.status(500).json({message: err.message});
