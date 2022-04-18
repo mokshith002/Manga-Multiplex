@@ -1,4 +1,5 @@
 const db = require('../db/index')
+const bcrypt = require('bcrypt')
 
 exports.getEmployees = async (req, res) => {
     try {
@@ -65,5 +66,19 @@ exports.deleteEmployee = async (req, res) => {
         res.json({message: `Deleted employee with id ${id}`, deletedRow: result.rows[0]});
     } catch (err) {
         res.status(500).json({message: err.message});
+    }
+}
+
+exports.authenticateEmployee = async (req, res) => {
+    try {
+        const {email, password} = req.query;
+        const result = await db.query('SELECT empId, passwordHash FROM employee WHERE email=$1', [email]);
+        if (!result.rows.length) return res.status(200).json({ success: false });
+        const {passwordHash, empId} = result.rows[0];
+        const isPasswordCorrect = await bcrypt.compare(password, passwordHash);
+         if (!isPasswordCorrect) return res.status(200).json({ success: false });
+      res.status(200).send({success: true, empId: empId});
+    } catch (err) {
+        res.status(500).json({message: err.message})
     }
 }
