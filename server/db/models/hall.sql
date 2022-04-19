@@ -5,7 +5,7 @@ CREATE TABLE hall (
     theaterId INTEGER REFERENCES theater (theaterId),
     seatNo VARCHAR(10),
     isBooked BOOLEAN,
-    PRIMARY KEY (hallno, seatNo)
+    PRIMARY KEY (hallno, theaterId, seatNo)
  );
 
 INSERT INTO hall VALUES (1, 1, 'A1', false);
