@@ -11,7 +11,7 @@ function App() {
             <Routes>
                 <Route path="/login" element={<Login />}/>
                 <Route path="/register" element={<Register />}/>
-                <Route path="/seating" element={<SeatingLayout />}/>
+                <Route path="/seating" element={<SeatingLayout hallId={1}/>}/>
             </Routes>
         </div>
     );

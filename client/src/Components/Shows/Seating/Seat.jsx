@@ -2,15 +2,23 @@ import React from 'react'
 
 
 export default function Seat(props){
-    const {row, col} = props;
+    const {seatNo, booked} = props;
 
-    console.log(row, col);
+    const [selected, setSelected] = React.useState(false);
 
-    const convert =  ['_', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+    const styles = {
+        backgroundColor: booked? "#DCDCDC" : selected ? "#5CB85C" : "white",
+        cursor: booked ? "default" : "pointer",
+    }
+
+    const toggleSelect = () => {
+        setSelected(prev => !prev);
+    }
+
 
      return(
-        <div class="col seat mt-2 mb-2 col-md-5" >
-            {`${convert[row]}${col}`}
+        <div class="col seat mt-2 mb-2 col-md-5" onClick={toggleSelect}>
+            {seatNo}
         </div>
      )
 }

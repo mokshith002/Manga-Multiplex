@@ -36,7 +36,7 @@ exports.addSell = async (req, res) => {
 
 
 
-exports.deleteMovie = async (req, res) => {
+exports.deleteSell= async (req, res) => {
     try {
         const {id1,id2} = req.params;
         const result = await db.query('DELETE FROM sell WHERE ticketId=$1 AND employeeId=$2 RETURNING *', [id1,id2]);

@@ -13,7 +13,17 @@ exports.getHall = async (req, res) => {
     try {
         const {id} = req.params;
          const result = await db.query(`SELECT * FROM hall WHERE hallNo = ${id}`);
-        res.json(result.rows[0]);
+        res.json(result.rows);
+    } catch (err) {
+         res.status(500).json({message: err.message});
+    }
+}
+
+exports.getHallSeats = async (req, res) => {
+    try {
+        const {id} = req.params;
+         const result = await db.query(`SELECT seatNo, isBooked FROM hall WHERE hallNo = ${id}`);
+        res.json(result.rows);
     } catch (err) {
          res.status(500).json({message: err.message});
     }
@@ -21,15 +31,11 @@ exports.getHall = async (req, res) => {
 
 exports.addHall = async (req, res) => {
     try {
-        const {theaterId, seatNo, isBooked} = req.body;
-        const newEmp = await db.query(`INSERT INTO hall (
-                theaterId, 
-                seatNo,
-                isBooked 
-            ) 
-            VALUES($1, $2, $3) 
+        const {hallId, theaterId, seatNo, isBooked} = req.body;
+        const newEmp = await db.query(`INSERT INTO hall 
+            VALUES($1, $2, $3, $4) 
             RETURNING *`, 
-        [theaterId, seatNo, isBooked]);
+        [hallId, theaterId, seatNo, isBooked]);
         res.json(newEmp.rows[0]);
     } catch (err) {
         res.status(500).json({message: err.message});
