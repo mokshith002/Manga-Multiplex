@@ -1,6 +1,7 @@
 import React from 'react';
 import RegisterForm from './RegisterForm';
-export default function Login() {
+
+export default function Register() {
 
     return(
       
@@ -10,5 +11,5 @@ export default function Login() {
           
         </div>
     )
-};
+}
 

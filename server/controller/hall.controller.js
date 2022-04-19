@@ -54,7 +54,7 @@ exports.updateHall = async (req, res) => {
     }
 }
 
-exports.deleteEmployee = async (req, res) => {
+exports.deleteHall = async (req, res) => {
     try {
         const {id} = req.params;
         const result = await db.query('DELETE FROM hall WHERE hallNo=$1 RETURNING *', [id]);

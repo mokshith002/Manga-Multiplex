@@ -1,4 +1,5 @@
 require("dotenv").config();
+const cors = require("cors");
 const express = require('express')
 const db = require('./db/index')
 const morgan = require('morgan')
@@ -15,6 +16,7 @@ const app = express();
 
 app.use(express.json())
 app.use(morgan("dev"))
+app.use(cors());
 
 app.use('/employees', employeeRoutes);
 app.use('/theater', theaterRoutes);

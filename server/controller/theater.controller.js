@@ -60,3 +60,13 @@ exports.deleteTheater = async (req, res) => {
         res.status(500).json({message: err.message});
     }
 }
+
+exports.getTheaterIds = async (req, res) => {
+    try {
+        const {rows} = await db.query('SELECT theaterId FROM theater');
+        const result = rows.map(ele => ele.theaterid);
+        res.status(200).send(result);
+    } catch (err) {
+        res.status(500).json({message: err.message});
+    }
+}

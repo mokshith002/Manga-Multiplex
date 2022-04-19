@@ -32,7 +32,6 @@ export default function LoginForm() {
 
     function handleSubmit(event){
         event.preventDefault();
-        // submitLogin();
         console.log(formData);
     }
 

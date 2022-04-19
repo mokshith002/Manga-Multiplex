@@ -5,7 +5,7 @@ import { useNavigate, Link} from 'react-router-dom';
 
 export default function RegisterForm(params) {
 
-    const URL = `http://localhost:${3005}`;
+    const URL = `http://localhost:${3001}`;
 
     const navigate = useNavigate();
 
@@ -31,8 +31,8 @@ export default function RegisterForm(params) {
     }
 
 
-    useEffect(async () => {
-        await getOptions();
+    useEffect(() => {
+        getOptions();
         // setOptions(theaterIds.map(id => ({value: id, label: id, name: id})))
     },[])
 
