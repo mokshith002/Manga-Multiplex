@@ -25,6 +25,7 @@ export default function SeatingLayout(props) {
             const {seatno, isbooked} = ele;
             let _row = seatno.charCodeAt(0) - 'A'.charCodeAt(0);
             seats[_row].push({seatno, isbooked});
+            if(isbooked) setBooked(prev => [...prev, seatno]);
         })
     }
 
@@ -32,7 +33,7 @@ export default function SeatingLayout(props) {
         setRows(() => {
             return seats.map((seat_row, index) => {
                 return(
-                <div class="row" key={`row-${index}`}>
+                <div class="row _row" key={`row-${index}`}>
                     {
                         seat_row.map((ele, _index) => (<Seat key={`cell-${index}-${_index}`} seatNo={ele.seatno} booked={ele.isbooked} handleClick={updateSelectedSeats}/>))
                     }
@@ -40,54 +41,49 @@ export default function SeatingLayout(props) {
                 )
             })  
         })
-
-        initalize();
     }
 
-    const initalize = () => {
-        setBooked(() => {
-            return seats.map((seat_row) => {
-                const row1 =  seat_row.map((ele) => {console.log(ele.isbooked); return ele.isbooked});
-                console.log(row1);
-                return row1;
-            })
-        })
-
-        setSelected(() => {
-            return seats.map((seat_row) => {
-                return seat_row.map(() => false)
-            })
-        })
-        console.log(booked);
-        console.log(selected);
-
-        if(!booked.length || !selected.length) setReload(prev => !prev);
-    }
+    
 
     React.useEffect(() => {
         getSeats();
         setTimeout(createSeats, 100); 
-        console.log("Running") ;     
     },[reload])
 
     const updateSelectedSeats = (seatNo) => {
-        const _row = seatNo.charCodeAt(0) - 'A'.charCodeAt(0);
-        const _col = parseInt(seatNo.split('').splice(1).join());
-        console.log(`Row - ${_row} and Col - ${_col - 1}`);
+        if(booked.includes(seatNo)) return;
         setSelected((prev) => {
-            const newState = prev;
-            newState[_row][_col-1] = !newState[_row][_col - 1];
-            return newState;
+            if(prev.includes(seatNo))
+                return prev.filter(ele => ele != seatNo);
+            else 
+                return [...prev, seatNo]
         })
+    }
+
+    const bookSeats = async () => {
+        console.log(selected);
+        if(selected.length)
+            await axios.put(`${URL}/hall/seats/book`, {theaterId:theaterId, hallId:hallId, seats:selected});
+        setReload(prev => !prev);
+        setSelected([]);
     }
     
 
     return(
-        
+        <div class="p-5 container">
+            <div class="row text-center">
+            <h2 class="mb-5">Select Seats</h2>
+                <div class="col-12">
+            <div class="btn-dark btn" onClick={bookSeats}>
+                Book Seats
+            </div>
+                </div>
+            </div>
         <div class="p-5 d-flex justify-content-center align-items-center seating-layout">
             <div class=' _container' >
                 {rows}
              </div>
+        </div>
         </div>
         
     )

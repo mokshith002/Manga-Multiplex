@@ -33,3 +33,6 @@ INSERT INTO hall VALUES (1, 1, 'E2', false);
 INSERT INTO hall VALUES (1, 1, 'E3', false);
 INSERT INTO hall VALUES (1, 1, 'E4', false);
 INSERT INTO hall VALUES (1, 1, 'E5', false);
+
+-- To reset booked 
+-- UPDATE hall SET isbooked=false

@@ -8,6 +8,7 @@ router.get('/:id', controller.getHall);
 router.get('/:hallId/:theaterId/seats', controller.getHallSeats);
 router.post('/', controller.addHall);
 router.put('/:id', controller.updateHall);
+router.put('/seats/book', controller.bookHallSeats);
 router.delete('/:id', controller.deleteHall);
 
 module.exports = router;

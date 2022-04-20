@@ -33,9 +33,8 @@ exports.addHall = async (req, res) => {
     try {
         const {hallId, theaterId, seatNo, isBooked} = req.body;
         const newEmp = await db.query(`INSERT INTO hall 
-            VALUES($1, $2, $3, $4) 
-            RETURNING *`, 
-        [hallId, theaterId, seatNo, isBooked]);
+            VALUES('${hallId}', '${theaterId}', '${seatNo}', '${isBooked}') 
+            RETURNING *`);
         res.json(newEmp.rows[0]);
     } catch (err) {
         res.status(500).json({message: err.message});
@@ -57,6 +56,24 @@ exports.updateHall = async (req, res) => {
          res.json({message: `Hall with id ${id} is succesfully updated`, updatedRow: result.rows[0]});
     } catch (err) {
          res.status(500).json({message: err.message});
+    }
+}
+
+exports.bookHallSeats = async (req, res) => {
+    try {
+        const {theaterId, hallId, seats} = req.body;
+        const len = seats.length;
+        const seatArr = seats.map((st, index) => {
+            if(index == len - 1)
+                return `'${st}'`;
+            else
+                return `'${st}' `
+        })
+        const q = `UPDATE hall SET isbooked=true WHERE seatno IN (${seatArr}) AND theaterId=${theaterId} AND hallNo=${hallId} RETURNING *`;
+        const result = await db.query(q);
+        res.json({message: 'Seats are booked!', updatedSeats: result.rows});
+    } catch (err) {
+        res.status(500).json({message: err.message});
     }
 }
 
