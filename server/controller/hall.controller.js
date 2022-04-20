@@ -22,7 +22,7 @@ exports.getHall = async (req, res) => {
 exports.getHallSeats = async (req, res) => {
     try {
         const {hallId, theaterId} = req.params;
-         const result = await db.query(`SELECT seatNo, isBooked FROM hall WHERE hallNo = ${hallId} AND theaterId=${theaterId}`);
+         const result = await db.query(`SELECT seatNo, isBooked FROM hall WHERE hallNo = ${hallId} AND theaterId=${theaterId} ORDER BY seatno`);
         res.json(result.rows);
     } catch (err) {
          res.status(500).json({message: err.message});

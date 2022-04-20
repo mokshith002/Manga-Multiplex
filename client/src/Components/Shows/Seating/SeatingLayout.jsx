@@ -30,11 +30,11 @@ export default function SeatingLayout(props) {
 
     const createSeats = () => {
         setRows(() => {
-            return seats.map((seat_row) => {
+            return seats.map((seat_row, index) => {
                 return(
-                <div class="row">
+                <div class="row" key={`row-${index}`}>
                     {
-                        seat_row.map((ele) => (<Seat seatNo={ele.seatno} booked={ele.isbooked} handleClick={updateSelectedSeats}/>))
+                        seat_row.map((ele, _index) => (<Seat key={`cell-${index}-${_index}`} seatNo={ele.seatno} booked={ele.isbooked} handleClick={updateSelectedSeats}/>))
                     }
                 </div>
                 )
@@ -71,8 +71,14 @@ export default function SeatingLayout(props) {
     },[reload])
 
     const updateSelectedSeats = (seatNo) => {
-        console.log(`${seatNo} selected`);
-        setReload(prev => !prev);
+        const _row = seatNo.charCodeAt(0) - 'A'.charCodeAt(0);
+        const _col = parseInt(seatNo.split('').splice(1).join());
+        console.log(`Row - ${_row} and Col - ${_col - 1}`);
+        setSelected((prev) => {
+            const newState = prev;
+            newState[_row][_col-1] = !newState[_row][_col - 1];
+            return newState;
+        })
     }
     
 
