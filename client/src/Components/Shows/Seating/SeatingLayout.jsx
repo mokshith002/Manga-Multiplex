@@ -1,14 +1,18 @@
 import React from 'react';
-import ReactDOMServer from 'react-dom/server';
 import Seat from './Seat';
 import axios from 'axios';
+import { useSearchParams, useHistory, useOutletContext} from 'react-router-dom';
+import './Seating.css'
 
 export default function SeatingLayout(props) {
 
 
     const URL = `http://localhost:${5000}`;
 
-    const {hallId, theaterId} = props;
+    const {bookSeats, hallId, theaterId} = props;
+    const history = useHistory();
+    
+    console.log(hallId, theaterId);
 
     const [selected, setSelected] = React.useState([]);
     const [booked, setBooked] = React.useState([]);
@@ -33,7 +37,7 @@ export default function SeatingLayout(props) {
         setRows(() => {
             return seats.map((seat_row, index) => {
                 return(
-                <div class="row _row" key={`row-${index}`}>
+                <div className="row _row" key={`row-${index}`}>
                     {
                         seat_row.map((ele, _index) => (<Seat key={`cell-${index}-${_index}`} seatNo={ele.seatno} booked={ele.isbooked} handleClick={updateSelectedSeats}/>))
                     }
@@ -54,36 +58,41 @@ export default function SeatingLayout(props) {
         if(booked.includes(seatNo)) return;
         setSelected((prev) => {
             if(prev.includes(seatNo))
-                return prev.filter(ele => ele != seatNo);
+                return prev.filter(ele => ele !== seatNo);
             else 
                 return [...prev, seatNo]
         })
     }
 
-    const bookSeats = async () => {
-        console.log(selected);
-        if(selected.length)
-            await axios.put(`${URL}/hall/seats/book`, {theaterId:theaterId, hallId:hallId, seats:selected});
-        setReload(prev => !prev);
-        setSelected([]);
+    
+
+    const handleClick = () =>{
+        history(`/booking/seating?showId=1`)
     }
     
 
     return(
-        <div class="p-5 container">
-            <div class="row text-center">
-            <h2 class="mb-5">Select Seats</h2>
-                <div class="col-12">
-            <div class="btn-dark btn" onClick={bookSeats}>
-                Book Seats
+        <div className="p-5 container">
+            
+            <div className="row text-center">
+
+                <h2 className="mb-5">Select Seats</h2>
+
+                <div className="col-12">
+                    <div className="btn-dark btn" onClick={handleClick}>
+                         Book Seats
+                    </div>
+                </div>
+                
             </div>
+        
+            <div className="p-5 d-flex justify-content-center align-items-center seating-layout">
+                <div className=' _container' >
+                    {rows}
                 </div>
             </div>
-        <div class="p-5 d-flex justify-content-center align-items-center seating-layout">
-            <div class=' _container' >
-                {rows}
-             </div>
-        </div>
+
+
         </div>
         
     )

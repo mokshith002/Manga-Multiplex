@@ -1,5 +1,5 @@
 import React from 'react'
-
+import './Seating.css'
 
 export default function Seat(props){
     const {seatNo, booked, handleClick} = props;
@@ -18,7 +18,7 @@ export default function Seat(props){
     }
 
     const onHover = (e) => {
-        if(e.type == "mouseover")
+        if(e.type === "mouseover")
             e.target.style.backgroundColor = booked ? "#DCDCDC" : selected ? "#5CB85C" : "#cae8ca";
         else{
             e.target.style.backgroundColor = booked ? "#DCDCDC" : selected ? "#5CB85C" : "white";  
@@ -27,7 +27,7 @@ export default function Seat(props){
 
 
      return(
-        <div class="col seat mt-2 mb-2 col-md-5" style={styles} onClick={toggleSelect} onMouseOver={onHover} onMouseOut={onHover}>
+        <div className="col seat mt-2 mb-2 col-md-5" style={styles} onClick={toggleSelect} onMouseOver={onHover} onMouseOut={onHover}>
             {seatNo}
         </div>
      )

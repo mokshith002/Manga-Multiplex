@@ -1,7 +1,7 @@
 // require("dotenv").config();
 import axios from 'axios';
 import React, {useState} from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 
 export default function LoginForm() {
 
@@ -12,14 +12,14 @@ export default function LoginForm() {
         password: ''
     });
 
-    const navigate = useNavigate();
+    const history = useHistory();
 
     const submitLogin = () => {
         axios.get(`${URL}/employee/authenticate/details`, formData)
             .then(res => {
                 if (res.data.success) {
                     localStorage.setItem("userId", res.data.empId);
-                    navigate('/');
+                    history.push('/');
                 }
                 else {
                     alert("Invalid credentials!");

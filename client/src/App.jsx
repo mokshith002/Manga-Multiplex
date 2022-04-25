@@ -1,18 +1,26 @@
 import React from "react";
-import {Route, Routes} from "react-router-dom";
+import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import Login from './Components/Login/Login';
 import Register from './Components/Login/Register';
+import Booking from "./Components/Shows/Booking";
 import SeatingLayout from "./Components/Shows/Seating/SeatingLayout";
+import Ticket from "./Components/Shows/Ticket"; 
+import NavBar from "./Components/NavBar/NavBar";
+import Home from "./Components/Home/Home";
 
 function App() {
     
     return ( 
         <div className = "App" >
-            <Routes>
-                <Route path="/login" element={<Login />}/>
-                <Route path="/register" element={<Register />}/>
-                <Route path="/seating" element={<SeatingLayout hallId={1} theaterId={1}/>}/>
-            </Routes>
+            <Router>
+                <NavBar />
+                <Switch>
+                    <Route exact path = "/"> <Home /> </Route> 
+                    <Route path="/login"> <Login /> </Route> 
+                    <Route path="/register"> <Register /> </Route> 
+                    <Route path="/booking"> <Booking /> </Route>
+                </Switch>
+            </Router>
         </div>
     );
 }
