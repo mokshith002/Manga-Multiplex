@@ -10,7 +10,6 @@ export default function SeatingLayout(props) {
     const URL = `http://localhost:${5000}`;
 
     const {bookSeats, hallId, theaterId} = props;
-    const history = useHistory();
     
     console.log(hallId, theaterId);
 
@@ -36,13 +35,23 @@ export default function SeatingLayout(props) {
     const createSeats = () => {
         setRows(() => {
             return seats.map((seat_row, index) => {
-                return(
-                <div className="row _row" key={`row-${index}`}>
-                    {
-                        seat_row.map((ele, _index) => (<Seat key={`cell-${index}-${_index}`} seatNo={ele.seatno} booked={ele.isbooked} handleClick={updateSelectedSeats}/>))
-                    }
-                </div>
-                )
+                const width = seat_row.length
+                return (
+                  <div
+                    className="row _row col"
+                    key={`row-${index}`}
+                    style={{width:"fit-content"}}
+                  >
+                    {seat_row.map((ele, _index) => (
+                      <Seat
+                        key={`cell-${index}-${_index}`}
+                        seatNo={ele.seatno}
+                        booked={ele.isbooked}
+                        handleClick={updateSelectedSeats}
+                      />
+                    ))}
+                  </div>
+                );
             })  
         })
     }
@@ -67,33 +76,27 @@ export default function SeatingLayout(props) {
     
 
     const handleClick = () =>{
-        history(`/booking/seating?showId=1`)
+        bookSeats(selected);
     }
     
 
-    return(
-        <div className="p-5 container">
-            
-            <div className="row text-center">
+    return (
+      <div className="p-5 container">
+        <div className="row text-center">
+          <h2 className="mb-5 _heading">Select Seats</h2>
 
-                <h2 className="mb-5">Select Seats</h2>
-
-                <div className="col-12">
-                    <div className="btn-dark btn" onClick={handleClick}>
-                         Book Seats
-                    </div>
-                </div>
-                
+          <div className="col-12">
+            <div className="btn-dark btn" onClick={handleClick}>
+              Book Seats
             </div>
-        
-            <div className="p-5 d-flex justify-content-center align-items-center seating-layout">
-                <div className='_container-seats' >
-                    {rows}
-                </div>
-            </div>
-
-
+          </div>
         </div>
-        
-    )
+
+        <div className="p-5 d-flex justify-content-center align-items-center seating-layout">
+          <div className="_container-seats align-items-center justify-content-center">
+            {rows}
+          </div>
+        </div>
+      </div>
+    );
 }

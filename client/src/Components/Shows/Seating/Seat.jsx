@@ -8,7 +8,7 @@ export default function Seat(props){
 
     const styles = {
         backgroundColor: booked? "#DCDCDC" : selected ? "#5CB85C" : "white",
-        cursor: booked ? "default" : "pointer",
+        cursor: booked ? "no-drop" : "pointer",
     }
 
     const toggleSelect = () => {

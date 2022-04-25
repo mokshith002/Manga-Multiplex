@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import {useLocation, useRouteMatch, BrowserRouter as Router, Route, Switch} from "react-router-dom";
+import {useLocation, useRouteMatch, BrowserRouter as Router, Route, Switch, useHistory} from "react-router-dom";
 import axios from "axios";
 import SeatingLayout from "./Seating/SeatingLayout";
 import Ticket from "./Ticket";
@@ -11,6 +11,10 @@ export default function Booking() {
     const URL = `http://localhost:${5000}`;
 
     const {search} = useLocation();
+
+    const history = useHistory();
+    // history.go(0);
+
     // let [searchParams, setSearchParams] = useSearchParams();
     const searchParams = new URLSearchParams(search);
 
@@ -33,8 +37,16 @@ export default function Booking() {
 
     const bookSeats = async (selected) => {
         console.log(selected);
-        if(selected.length)
+        if(selected.length){
             await axios.put(`${URL}/hall/seats/book`, {theaterId:theaterId, hallId:hallId, seats:selected});
+            console.log(path);
+            history.push(`${path}/ticket`);
+            history.go(0);
+        }
+        else{
+            history.push("/");
+            // history.go(0)
+        }
     }
 
     return ( 
