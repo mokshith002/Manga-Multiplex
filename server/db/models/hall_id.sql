@@ -1,0 +1,7 @@
+DROP TABLE IF EXISTS hall_id;
+
+CREATE TABLE hall_id (
+    id INTEGER PRIMARY KEY
+ );
+
+ INSERT INTO hall_id VALUES (1);

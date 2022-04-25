@@ -1,5 +1,5 @@
 import React from 'react'
-import './Seating.css'
+// import './Seating.css'
 
 export default function Seat(props){
     const {seatNo, booked, handleClick} = props;
@@ -9,7 +9,6 @@ export default function Seat(props){
     const styles = {
         backgroundColor: booked? "#DCDCDC" : selected ? "#5CB85C" : "white",
         cursor: booked ? "default" : "pointer",
-
     }
 
     const toggleSelect = () => {
@@ -27,7 +26,7 @@ export default function Seat(props){
 
 
      return(
-        <div className="col seat mt-2 mb-2 col-md-5" style={styles} onClick={toggleSelect} onMouseOver={onHover} onMouseOut={onHover}>
+        <div className="col seat-row" style={styles} onClick={toggleSelect} onMouseOver={onHover} onMouseOut={onHover}>
             {seatNo}
         </div>
      )

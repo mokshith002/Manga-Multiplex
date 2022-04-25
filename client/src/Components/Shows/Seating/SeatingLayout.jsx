@@ -87,7 +87,7 @@ export default function SeatingLayout(props) {
             </div>
         
             <div className="p-5 d-flex justify-content-center align-items-center seating-layout">
-                <div className=' _container' >
+                <div className='_container-seats' >
                     {rows}
                 </div>
             </div>

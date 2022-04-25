@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS hall;
 
 CREATE TABLE hall (
-    hallNo INTEGER,
+    hallNo INTEGER REFERENCES hall_id (id),
     theaterId INTEGER REFERENCES theater (theaterId),
     seatNo VARCHAR(10),
     isBooked BOOLEAN,

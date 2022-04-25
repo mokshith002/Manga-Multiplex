@@ -5,6 +5,5 @@ CREATE TABLE ticket (
     showId INTEGER REFERENCES show (showId),
     employeeId INTEGER REFERENCES employee (employeeId),
     seatNo VARCHAR(10),
-
     price INTEGER
 );

@@ -19,6 +19,16 @@ exports.getShow = async (req, res) => {
     }
 }
 
+exports.getTheaterHall = async (req, res) => {
+    try {
+        const {id} = req.params;
+        const result = await db.query(`SELECT theaterId, hallNo FROM show WHERE showId = ${id}`);
+        res.json(result.rows[0]);
+    } catch (err) {
+        res.status(500).json({message: err.message});
+    }
+}
+
 exports.addShow = async (req, res) => {
     try {
         const {hallNo, movieId, theaterId, startTime, endTime} = req.body;
