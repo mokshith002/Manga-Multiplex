@@ -1,5 +1,9 @@
 import React from "react";
 import "./Profile.css";
+import detail_png from "../../Images/6592963.png";
+import educatioin_png from "../../Images/2232688.png";
+import role_png from "../../Images/681392.png";
+import face from "../../Images/face.jpg"
 
 export default function App() {
     return (
@@ -29,7 +33,7 @@ export default function App() {
         <meta property="og:title" content="Home" />
         <meta property="og:type" content="website" />
         <section
-          className="u-clearfix u-palette-3-light-2 u-section-1"
+          className="u-clearfix u-palette-3-light-2 u-section-4"
           id="carousel_f9a1"
         >
           <div className="u-clearfix u-sheet u-sheet-1">
@@ -65,7 +69,7 @@ export default function App() {
                 <div className="u-align-center u-container-style u-list-item u-radius-15 u-repeater-item u-shape-round u-white u-list-item-2">
                   <div className="u-container-layout u-similar-container u-container-layout-2">
                     <span className="u-border-2 u-border-palette-3-light-1 u-file-icon u-icon u-icon-circle u-palette-2-light-3 u-spacing-27 u-icon-1">
-                      <img src="images/6592963.png" alt="" />
+                      <img src={detail_png} alt="" />
                     </span>
                     <h5 className="u-custom-font u-font-raleway u-text u-text-default u-text-3">
                       Details
@@ -80,7 +84,7 @@ export default function App() {
                 <div className="u-align-center u-container-style u-list-item u-radius-15 u-repeater-item u-shape-round u-white u-list-item-3">
                   <div className="u-container-layout u-similar-container u-container-layout-3">
                     <span className="u-border-2 u-border-palette-3-light-1 u-file-icon u-icon u-icon-circle u-palette-2-light-3 u-spacing-27 u-icon-2">
-                      <img src="images/2232688.png" alt="" />
+                      <img src={educatioin_png} alt="" />
                     </span>
                     <h5 className="u-custom-font u-font-raleway u-text u-text-default u-text-5">
                       EDUCATIoN
@@ -93,7 +97,7 @@ export default function App() {
                 <div className="u-align-center u-container-style u-list-item u-radius-15 u-repeater-item u-shape-round u-white u-list-item-4">
                   <div className="u-container-layout u-similar-container u-container-layout-4">
                     <span className="u-border-2 u-border-palette-3-light-1 u-file-icon u-icon u-icon-circle u-palette-2-light-3 u-spacing-27 u-icon-3">
-                      <img src="images/681392.png" alt="" />
+                      <img src={role_png} alt="" />
                     </span>
                     <h5 className="u-custom-font u-font-raleway u-text u-text-default u-text-7">
                       ROLE

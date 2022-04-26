@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,900;1,400;1,500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Libre+Bodoni:ital@0;1&display=swap');
+
+.Booking{
+    background-image: url('../../Images/5590822.jpg');
+}
+
+.__heading{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    margin-top: 50px !important;
+}
+
+._card{
+    border-radius: 20px;
+    box-shadow: 50px 45px 45px rgba(1, 1, 1, 0.15);
+    width: fit-content;
+    padding-left: 60px;
+    padding-right: 60px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin: auto;
+    margin-top: 60px;
+    background-image: url('../../Images/xdz-1.jpg');
+    color: white;
+    margin-bottom: 100px !important;
+}
+
+._ticket-id{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 22px;
+}
+
+._small-poster{
+    margin: auto;
+    text-align: center;
+}
+
+._details{
+    margin: auto;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    margin-top: 8px;
+}
+
+._footnote{
+    margin-top: 45px;
+    font-family: 'Montserrat', sans-serif;
+}

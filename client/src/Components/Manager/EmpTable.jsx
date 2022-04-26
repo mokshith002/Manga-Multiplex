@@ -59,14 +59,15 @@ export default function Grid() {
 
   const columns = React.useMemo(
     () => [
-      { field: 'id', type: 'string' },
-      { field: 'name', type: 'string' },
-      {field: 'email',type:'string',width:200},
-      {field: 'role',type:'string'},
+      { field: 'id', type: 'string', headerAlign: 'center', align: 'center', flex:1 },
+      { field: 'name', type: 'string', headerAlign: 'center', align: 'center', flex:2},
+      {field: 'email',type:'string',width:200, headerAlign: 'center', align: 'center', flex:2},
+      {field: 'role',type:'string', headerAlign: 'center', align: 'center', flex: 2},
       {
         field: 'del',
-        headerName: 'Delete',
+        headerName: 'Delete',headerAlign: 'center', align: 'center',
         type: 'actions',
+        flex: 1,
         width: 80,
         getActions: (params) => [
           <GridActionsCellItem
@@ -78,8 +79,9 @@ export default function Grid() {
       },
       {
         field: 'view',
+        flex: 1,
         type: 'actions',
-        headerName: 'View More',
+        headerName: 'View More',headerAlign: 'center', align: 'center',
         width: 100,
         getActions: (params) => [
           <GridActionsCellItem
@@ -94,8 +96,13 @@ export default function Grid() {
   );
 
   return (
-    <div style={{ height: 500, width: '100%' }}>
-      <DataGrid columns={columns} rows={rows} />
-    </div>
+    <>
+      <div className="row text-center">
+        <h2 className="mb-5 _heading">All Employees</h2>
+      </div>
+      <div style={{ height: 550, width: "60%", margin: "auto" }}>
+        <DataGrid columns={columns} rows={rows} />
+      </div>
+    </>
   );
 }

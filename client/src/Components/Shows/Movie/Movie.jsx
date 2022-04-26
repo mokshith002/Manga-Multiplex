@@ -1,5 +1,8 @@
 import React from "react";
 import "./Movie.css";
+import "../../../nicepage.css";
+
+import pic1 from "../../../Images/FAsVc4FUcAYxfAe.jpg";
 
 export default function App() {
     return (
@@ -16,8 +19,6 @@ export default function App() {
           content="np-template-header-footer-from-plugin"
         />
         <title>Home</title>
-        <link rel="stylesheet" href="nicepage.css" media="screen" />
-        <link rel="stylesheet" href="Home.css" media="screen" />
         <link
           id="u-theme-google-font"
           rel="stylesheet"
@@ -32,7 +33,7 @@ export default function App() {
         <meta property="og:title" content="Home" />
         <meta property="og:type" content="website" />
         <section
-          className="u-align-center u-clearfix u-palette-3-light-1 u-section-1"
+          className="u-align-center u-clearfix u-palette-3-light-1 u-section-5"
           id="carousel_0bfa"
         >
           <div className="u-clearfix u-sheet u-sheet-1">
@@ -41,7 +42,7 @@ export default function App() {
             </h1>
             <img
               className="u-image u-image-1"
-              src="images/FAsVc4FUcAYxfAe.jpg"
+              src={pic1}
               data-image-width={720}
               data-image-height={900}
             />

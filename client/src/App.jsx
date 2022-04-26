@@ -8,6 +8,8 @@ import Ticket from "./Components/Shows/Ticket";
 import NavBar from "./Components/NavBar/NavBar";
 import Home from "./Components/Home/Home";
 import Viewemp from "./Components/Manager/Viewemp";
+import Profile from "./Components/Staff/Profile";
+import Movie from "./Components/Shows/Movie/Movie"
 
 function App() {
     
@@ -20,8 +22,9 @@ function App() {
                     <Route path="/login"> <Login /> </Route> 
                     <Route path="/register"> <Register /> </Route> 
                     <Route path="/booking"> <Booking /> </Route>
-                    <Route path="/view"> <Viewemp /> </Route>
-                    
+                    <Route path="/all-staff"> <Viewemp /> </Route>
+                    <Route path="/profile"> <Profile /></Route>
+                    <Route path="/shows"> <Movie /></Route>
                 </Switch>
             </Router>
         </div>

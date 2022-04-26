@@ -1,5 +1,5 @@
 import React from 'react';
-import Grid from '../table/DataTable';
+import Grid from './EmpTable';
 
 export default function Viewemp() {
 

@@ -18,7 +18,7 @@ export default function App(){
   >
     
     <section
-      className="u-clearfix u-image u-valign-middle-md u-valign-middle-sm u-valign-middle-xs u-section-1"
+      className="u-clearfix u-image u-valign-middle-md u-valign-middle-sm u-valign-middle-xs u-section-0"
       id="carousel_95b8"
       data-image-width="1980"
       data-image-height="1320"

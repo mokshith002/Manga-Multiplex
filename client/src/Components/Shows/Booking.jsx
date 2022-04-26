@@ -20,46 +20,60 @@ export default function Booking() {
 
     const showId = searchParams.get("showId");
 
-    const [hallId, setHallId] = useState();
-    const [theaterId, setTheaterId] = useState();
+    const [booked, setBooked] = useState(false);
     const [loading, setLoading] = useState(true);
+    const [show, setShow] = useState({
+        hallId: null,
+        theaterId: null,
+        time: null,
+        bookedSeats:null,
+        ticketId:null,
+    })
 
     const getTheaterHall = async () => {
-        const res = await axios.get(`${URL}/show/${showId}/theater-hall`);
-        setHallId(res.data.hallno);
-        setTheaterId(res.data.theaterid);
+        const res = await axios.get(`${URL}/show/${showId}`);
+        setShow(prev => ({
+            ...prev,
+            hallId: res.data.hallno,
+            theaterId: res.data.theaterid,
+            time: res.data.starttime,
+        }))
         setLoading(false);
     }
 
     useEffect (() => {
         getTheaterHall();
-    })
+    },[booked]);
 
     const bookSeats = async (selected) => {
         console.log(selected);
         if(selected.length){
-            await axios.put(`${URL}/hall/seats/book`, {theaterId:theaterId, hallId:hallId, seats:selected});
-            console.log(path);
-            history.push(`${path}/ticket`);
-            history.go(0);
+            await axios.put(`${URL}/hall/seats/book`, {theaterId:show.theaterId, hallId:show.hallId, seats:selected});
+            setShow(prev => ({
+                ...prev,
+                bookedSeats: selected,
+                ticketId: 10
+            }))
+            setBooked(true);
         }
         else{
             history.push("/");
-            // history.go(0)
         }
     }
 
-    return ( 
-        <div className = "Booking" >
-            {
-               loading ? <div></div> :  
-               <Router>
-                   <Switch>
-                    <Route path={`${path}/seats`}> <SeatingLayout bookSeats={bookSeats} hallId={hallId} theaterId={theaterId}/> </Route>
-                    <Route path={`${path}/ticket`}> <Ticket /> </Route>
-                   </Switch>
-               </Router>
-            }        
-        </div>
+    return (
+      <div className="Booking">
+        {loading ? (
+          <div></div>
+        ) : booked ? (
+          <Ticket details={show}/>
+        ) : (
+          <SeatingLayout
+            bookSeats={bookSeats}
+            hallId={show.hallId}
+            theaterId={show.theaterId}
+          />
+        )}
+      </div>
     );
 }
