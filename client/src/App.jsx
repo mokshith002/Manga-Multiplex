@@ -7,6 +7,7 @@ import SeatingLayout from "./Components/Shows/Seating/SeatingLayout";
 import Ticket from "./Components/Shows/Ticket"; 
 import NavBar from "./Components/NavBar/NavBar";
 import Home from "./Components/Home/Home";
+import Viewemp from "./Components/Manager/Viewemp";
 
 function App() {
     
@@ -19,6 +20,8 @@ function App() {
                     <Route path="/login"> <Login /> </Route> 
                     <Route path="/register"> <Register /> </Route> 
                     <Route path="/booking"> <Booking /> </Route>
+                    <Route path="/view"> <Viewemp /> </Route>
+                    
                 </Switch>
             </Router>
         </div>

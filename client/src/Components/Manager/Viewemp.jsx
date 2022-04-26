@@ -1,12 +1,12 @@
 import React from 'react';
-import DataTable from '../table/DataTable';
+import Grid from '../table/DataTable';
 
 export default function Viewemp() {
 
     return(
         <div>
 
-            <DataTable />
+            <Grid />
           
         </div>
     )
