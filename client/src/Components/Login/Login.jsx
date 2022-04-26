@@ -1,10 +1,10 @@
 import React from 'react';
-import LoginForm from './LoginForm';
+import LoginForm from './_LoginForm';
 
 export default function Login() {
 
     return(
-        <div class='d-flex p-3 justify-content-center align-items-center' style={{height: "70vh"}}>
+        <div>
 
                 <LoginForm/>
           

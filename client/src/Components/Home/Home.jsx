@@ -1,5 +1,5 @@
 import React from 'react';
-import "./nicepage.css";
+// import "./nicepage.css";
 import "./Home.css";
 import asss_min from "../../Images/asss-min.jpg";
 import {BrowserRouter, Link} from 'react-router-dom';
