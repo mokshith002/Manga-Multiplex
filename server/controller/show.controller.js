@@ -75,3 +75,13 @@ exports.deleteShow = async (req, res) => {
         res.status(500).json({message: err.message});
     }
 }
+
+exports.getTimings = async (req, res) => {
+    try {
+        const {movieId} = req.params;
+        const result = await db.query(`SELECT starttime, showId FROM show WHERE movieId=${movieId}`);
+        res.send(result.rows);
+    } catch (err) {
+        res.status(500).json({message: err.message});
+    }
+}

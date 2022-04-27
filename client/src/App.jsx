@@ -26,7 +26,7 @@ function App() {
                     <Route path="/all-staff"> <Viewemp /> </Route>
                     <Route path="/profile"> <Profile /></Route>
                     <Route path="/movies"> <MovieCard /></Route>
-                    <Route path="/shows"> <Movie /></Route>
+                    <Route path="/movie/:movieId"> <Movie /></Route>
                 </Switch>
             </Router>
         </div>

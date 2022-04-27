@@ -9,5 +9,6 @@ router.get('/:id', controller.getShow);
 router.post('/', controller.addShow);
 router.put('/:id', controller.updateShow);
 router.delete('/:id', controller.deleteShow);
+router.get('/timings/:movieId', controller.getTimings);
 
 module.exports = router;

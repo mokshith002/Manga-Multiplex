@@ -1,24 +1,67 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Movie.css";
 import "../../../nicepage.css";
 import img1 from "../../../Images/FAsVc4FUcAYxfAe.jpg";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import { useParams, useHistory } from "react-router-dom";
 
-export default function App() {
+export default function Movie() {
+
+    const O_URL = process.env.REACT_APP_OMDB_URL;
+    const O_KEY = process.env.REACT_APP_OMDB_KEY;
+    const S_URL = process.env.REACT_APP_SERVER;
+
+    const history = useHistory();
+
+ 
+    const [details, setDetails] = useState({
+      name: '',
+      cast: [],
+      shows: [],
+      plot: '',
+      poster: ''
+    })
+
+    const {movieId} = useParams();
+
+    const loadData = async (_movieName) => {
+      const res = await axios.get(`${O_URL}/?t=${_movieName}&apikey=${O_KEY}`);
+      setDetails((prev) => ({
+        ...prev,
+        poster: res.data.Poster,
+        plot: res.data.Plot,
+        cast: res.data.Actors
+      }))
+    }
+
+    useEffect(() => {}, [details]);
+
+    const getMovieData = async () => {
+      const res = await axios.get(`${S_URL}/movie/${movieId}`);
+      const shows = await axios.get(`${S_URL}/show/timings/${movieId}`);
+      setDetails((prev) => ({
+        ...prev,
+        name: res.data.moviename,
+        shows: shows.data
+      }))
+      const _moviename = res.data.moviename;
+      loadData(_moviename.split(' ').join('+'));
+    }
+
+    useEffect(() => {
+      getMovieData();
+    },[]);
+
+    const handleClick = (id) => {
+      window.location.href = `http://localhost:3000/booking?showId=${id}`;
+    }
+
+    const timings = details.shows.map((_show) => {
+      return <Link className="_ind-time" onClick={() => {handleClick(_show.showid)}}>{_show.starttime}</Link>
+    })
 
 
-    const timings = [
-      <Link
-        className="_ind-time"
-      >
-        10:30 AM
-      </Link>,
-
-      <Link
-        className="_ind-time">
-        13:30 AM
-      </Link>
-    ];
 
     return (
       <>
@@ -29,11 +72,11 @@ export default function App() {
           >
             <div className="u-clearfix u-sheet u-sheet-1 _movie-container">
               <h1 className="u-text u-text-1">
-                RRR <br />
+                {details.name} <br />
               </h1>
               <img
                 className="u-image u-image-1"
-                src={img1}
+                src={details.poster}
                 width="720"
                 height="900"
               />
@@ -67,16 +110,12 @@ export default function App() {
                 <h3 className="u-text u-text-2">About The Movie</h3>
                 <p className="u-text u-text-3">
                   {" "}
-                  A tale of two legendary revolutionaries and their journey far
-                  away from home. After their journey they return home to start
-                  fighting back against British colonialists in the 1920s.
+                  {details.plot}
                 </p>
                 <h3 className="u-text u-text-4">Cast</h3>
                 <p className="u-text u-text-5">
                   {" "}
-                  The film stars N. T. Rama Rao Jr., Ram Charan, Ajay Devgn,
-                  Alia Bhatt, Shriya Saran, Samuthirakani, Ray Stevenson, Alison
-                  Doody, and Olivia Morris.
+                  {details.cast}
                 </p>
               </div>
               <div className="_timing-container">
