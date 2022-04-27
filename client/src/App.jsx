@@ -10,6 +10,7 @@ import Home from "./Components/Home/Home";
 import Viewemp from "./Components/Manager/Viewemp";
 import Profile from "./Components/Staff/Profile";
 import Movie from "./Components/Shows/Movie/Movie"
+import MovieCard from "./Components/Shows/Card/MovieCard";
 
 function App() {
     
@@ -24,6 +25,7 @@ function App() {
                     <Route path="/booking"> <Booking /> </Route>
                     <Route path="/all-staff"> <Viewemp /> </Route>
                     <Route path="/profile"> <Profile /></Route>
+                    <Route path="/movies"> <MovieCard /></Route>
                     <Route path="/shows"> <Movie /></Route>
                 </Switch>
             </Router>

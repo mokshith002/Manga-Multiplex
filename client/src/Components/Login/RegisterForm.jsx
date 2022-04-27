@@ -12,7 +12,6 @@ export default function RegisterForm(params) {
     const [options, setOptions] = useState([]);
 
     const [formData, setFormData] = useState({
-        theaterId: 0,
         email: '',
         password: '',
         confirmPass: '',
@@ -22,19 +21,6 @@ export default function RegisterForm(params) {
         education: ''
     })
 
-
-    const getOptions = async () => {
-        console.log(`${URL}/theater/id/all`);
-        const res = await axios.get(`${URL}/theater/id/all`);
-        console.log(res.data);
-        setOptions(res.data.map(id => ({value: id, label: id})));
-    }
-
-
-    useEffect(() => {
-        getOptions();
-        // setOptions(theaterIds.map(id => ({value: id, label: id, name: id})))
-    },[])
 
     const submitRegister = () => {
 
@@ -201,24 +187,6 @@ export default function RegisterForm(params) {
               </select>
             </div>
 
-            <div class="mb-3 col">
-              <label for="select1" class="form-label">
-                Select Theater ID
-              </label>
-              <Select
-                class="form-select"
-                id="select1"
-                name="theaterId"
-                options={options}
-              />
-            </div>
-
-            {/* <div class="mb-3 col">
-                     <label for="select1" class="form-label">Role</label>
-                    <select class="form-select" id="select1" name="role" onChange={handleChange} value={formData.role} required>
-                        {theaterIds.map()}
-                    </select>
-                </div> */}
           </div>
 
           <button type="submit" class="btn btn-primary">

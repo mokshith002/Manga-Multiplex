@@ -11,8 +11,8 @@ exports.getHalls = async (req, res) => {
 
 exports.getHall = async (req, res) => {
     try {
-        const {hallId, theaterId} = req.query;
-         const result = await db.query(`SELECT * FROM hall WHERE hallNo = ${hallId} AND theaterId=${theaterId}`);
+        const {hallId, showId} = req.query;
+         const result = await db.query(`SELECT * FROM hall WHERE hallNo = ${hallId} AND showId=${showId}`);
         res.json(result.rows);
     } catch (err) {
          res.status(500).json({message: err.message});
@@ -20,9 +20,10 @@ exports.getHall = async (req, res) => {
 }
 
 exports.getHallSeats = async (req, res) => {
+    
     try {
-        const {hallId, theaterId} = req.params;
-         const result = await db.query(`SELECT seatNo, isBooked FROM hall WHERE hallNo = ${hallId} AND theaterId=${theaterId} ORDER BY seatno`);
+        const {hallId, showId} = req.params;
+        const result = await db.query(`SELECT seatNo, isBooked FROM hall WHERE hallNo = ${hallId} AND showId=${showId} ORDER BY seatno`);
         res.json(result.rows);
     } catch (err) {
          res.status(500).json({message: err.message});
@@ -31,9 +32,9 @@ exports.getHallSeats = async (req, res) => {
 
 exports.addHall = async (req, res) => {
     try {
-        const {hallId, theaterId, seatNo, isBooked} = req.body;
+        const {hallId, showId, seatNo, isBooked} = req.body;
         const newEmp = await db.query(`INSERT INTO hall 
-            VALUES('${hallId}', '${theaterId}', '${seatNo}', '${isBooked}') 
+            VALUES('${hallId}', '${showId}', '${seatNo}', '${isBooked}') 
             RETURNING *`);
         res.json(newEmp.rows[0]);
     } catch (err) {
@@ -43,16 +44,16 @@ exports.addHall = async (req, res) => {
 
 exports.updateHall = async (req, res) => {
     try {
-        const {theaterId, seatNo, isBooked} = req.body;
+        const {showId, seatNo, isBooked} = req.body;
         const {id} = req.params;
         const result = await db.query(`UPDATE hall SET
-                theaterId = $1,
+                showId = $1,
                 seatNo = $2,
                 isBooked  = $3
             WHERE hallNo = $4
             RETURNING *
         `,
-         [theaterId, seatNo, isBooked, id])
+         [showId, seatNo, isBooked, id])
          res.json({message: `Hall with id ${id} is succesfully updated`, updatedRow: result.rows[0]});
     } catch (err) {
          res.status(500).json({message: err.message});
@@ -61,7 +62,7 @@ exports.updateHall = async (req, res) => {
 
 exports.bookHallSeats = async (req, res) => {
     try {
-        const {theaterId, hallId, seats} = req.body;
+        const {showId, hallId, seats} = req.body;
         const len = seats.length;
         const seatArr = seats.map((st, index) => {
             if(index == len - 1)
@@ -69,7 +70,7 @@ exports.bookHallSeats = async (req, res) => {
             else
                 return `'${st}' `
         })
-        const q = `UPDATE hall SET isbooked=true WHERE seatno IN (${seatArr}) AND theaterId=${theaterId} AND hallNo=${hallId} RETURNING *`;
+        const q = `UPDATE hall SET isbooked=true WHERE seatno IN (${seatArr}) AND showId=${showId} AND hallNo=${hallId} RETURNING *`;
         const result = await db.query(q);
         res.json({message: 'Seats are booked!', updatedSeats: result.rows});
     } catch (err) {

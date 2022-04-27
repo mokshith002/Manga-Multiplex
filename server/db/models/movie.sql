@@ -5,4 +5,9 @@ CREATE TABLE movie (
     movieName VARCHAR(30)
 );
 
-INSERT INTO movie (movieName) VALUES ('Batman');
+INSERT INTO movie (movieName) VALUES ('Shutter Island');
+INSERT INTO movie (movieName) VALUES ('The Batman');
+INSERT INTO movie (movieName) VALUES ('Knives Out');
+INSERT INTO movie (movieName) VALUES ('The Prestige');
+INSERT INTO movie (movieName) VALUES ('Forrest Gump');
+INSERT INTO movie (movieName) VALUES ('The Shawshank Redemption');

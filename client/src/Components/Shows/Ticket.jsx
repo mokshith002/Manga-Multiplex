@@ -33,7 +33,6 @@ function Ticket(props) {
             height="300px"
             style={{ marginTop: 25, marginBottom: 25 }}
           />
-          <div className="_details">Theater ID - {theaterId}</div>
           <div className="_details">Hall ID - {hallId}</div>
           <div className="_details">Seats - {seats}</div>
           <div className="_details">Movie Time - {time}</div>

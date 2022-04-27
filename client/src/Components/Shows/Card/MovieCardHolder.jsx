@@ -5,11 +5,37 @@ import axios from 'axios';
 export default function CardHolder(props) {
     const {title,cardData} = props;
 
+    const [cards, setCards] = React.useState([]);
+    const [movies, setMovies] = React.useState([]);
+
     // const cardComponents = cardarr.map(card => (
     //     <div className="col-3" key={card._id}>
     //         <Card title={}/>
     //     </div>
     // ));
+
+    const URL = `http://localhost:${5000}`;
+
+    const getMovies = async () => {
+        const res = await axios.get(`${URL}/movie`);
+        setMovies(res);
+        createCards();
+    }
+
+    const createCards = () => {
+        setCards(() => {
+            return movies.map((movie) => {
+                return (
+                    <Card />
+                )
+            })
+        })
+    }
+
+    React.useEffect(() => {
+
+    })
+
     return (
         <div className="container p-5">
             <div className="row row-cols-1 row-cols-md-2 row-cols-xl-3 p-3">

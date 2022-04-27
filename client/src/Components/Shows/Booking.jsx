@@ -24,7 +24,7 @@ export default function Booking() {
     const [loading, setLoading] = useState(true);
     const [show, setShow] = useState({
         hallId: null,
-        theaterId: null,
+        showId: showId,
         time: null,
         bookedSeats:null,
         ticketId:null,
@@ -35,7 +35,7 @@ export default function Booking() {
         setShow(prev => ({
             ...prev,
             hallId: res.data.hallno,
-            theaterId: res.data.theaterid,
+            showId: res.data.showid,
             time: res.data.starttime,
         }))
         setLoading(false);
@@ -48,7 +48,7 @@ export default function Booking() {
     const bookSeats = async (selected) => {
         console.log(selected);
         if(selected.length){
-            await axios.put(`${URL}/hall/seats/book`, {theaterId:show.theaterId, hallId:show.hallId, seats:selected});
+            await axios.put(`${URL}/hall/seats/book`, {showId:show.showId, hallId:show.hallId, seats:selected});
             setShow(prev => ({
                 ...prev,
                 bookedSeats: selected,
@@ -71,7 +71,7 @@ export default function Booking() {
           <SeatingLayout
             bookSeats={bookSeats}
             hallId={show.hallId}
-            theaterId={show.theaterId}
+            showId={show.showId}
           />
         )}
       </div>

@@ -9,9 +9,8 @@ export default function SeatingLayout(props) {
 
     const URL = `http://localhost:${5000}`;
 
-    const {bookSeats, hallId, theaterId} = props;
+    const {bookSeats, hallId, showId} = props;
     
-    console.log(hallId, theaterId);
 
     const [selected, setSelected] = React.useState([]);
     const [booked, setBooked] = React.useState([]);
@@ -21,7 +20,7 @@ export default function SeatingLayout(props) {
     const seats = [];
 
     const getSeats = async () => {
-        const res = await axios.get(`${URL}/hall/${hallId}/${theaterId}/seats`);
+        const res = await axios.get(`${URL}/hall/${hallId}/${showId}/seats`);
         for(let i = 0; i < 26; i++)
             seats.push([]);
         res.data.forEach((ele) => {
