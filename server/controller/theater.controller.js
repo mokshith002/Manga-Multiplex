@@ -1,4 +1,4 @@
-const db = require('../db/index')
+/*const db = require('../db/index')
 
 exports.getTheaters = async (req, res) => {
     try {
@@ -70,3 +70,4 @@ exports.getTheaterIds = async (req, res) => {
         res.status(500).json({message: err.message});
     }
 }
+*/

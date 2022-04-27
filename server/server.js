@@ -4,7 +4,7 @@ const express = require('express')
 const db = require('./db/index')
 const morgan = require('morgan')
 const employeeRoutes = require('./routes/employee.routes')
-const theaterRoutes = require('./routes/theater.routes')
+//const theaterRoutes = require('./routes/theater.routes')
 const movieRoutes = require('./routes/movie.routes')
 const ticketRoutes = require('./routes/ticket.routes')
 const showRoutes = require('./routes/show.routes')
@@ -19,7 +19,7 @@ app.use(morgan("dev"))
 app.use(cors());
 
 app.use('/employees', employeeRoutes);
-app.use('/theater', theaterRoutes);
+//app.use('/theater', theaterRoutes);
 app.use('/movie', movieRoutes);
 app.use('/ticket', ticketRoutes);
 app.use('/show', showRoutes);

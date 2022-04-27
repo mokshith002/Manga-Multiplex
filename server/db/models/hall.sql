@@ -2,10 +2,10 @@ DROP TABLE IF EXISTS hall;
 
 CREATE TABLE hall (
     hallNo INTEGER REFERENCES hall_id (id),
-    theaterId INTEGER REFERENCES theater (theaterId),
+    showId INTEGER REFERENCES show (showId),
     seatNo VARCHAR(10),
     isBooked BOOLEAN,
-    PRIMARY KEY (hallno, theaterId, seatNo)
+    PRIMARY KEY (hallno, showId, seatNo)
  );
 
 INSERT INTO hall VALUES (1, 1, 'A1', false);
