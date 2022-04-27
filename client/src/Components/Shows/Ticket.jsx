@@ -1,6 +1,5 @@
 import React from "react";
 import "./Ticket.css"
-import poster from "../../Images/FAsVc4FUcAYxfAe.jpg"
 import {useHistory} from "react-router-dom";
 
 function Ticket(props) {
@@ -9,9 +8,14 @@ function Ticket(props) {
     bookedSeats.sort();
     const seats = bookedSeats.join(', ');
 
+    const poster = localStorage.getItem('moviePoster');
+
     const history = useHistory();
 
-    const handleClick = () => {history.push('/');}
+    const handleClick = () => {
+      localStorage.removeItem('moviePoster');
+      history.push('/');
+    }
     
     return (
       <>

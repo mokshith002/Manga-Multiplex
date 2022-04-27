@@ -54,6 +54,7 @@ export default function Movie() {
     },[]);
 
     const handleClick = (id) => {
+      localStorage.setItem('moviePoster', details.poster);
       window.location.href = `http://localhost:3000/booking?showId=${id}`;
     }
 
