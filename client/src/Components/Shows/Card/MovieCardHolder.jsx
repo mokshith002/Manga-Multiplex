@@ -7,6 +7,10 @@ export default function CardHolder(props) {
     const [cards, setCards] = React.useState([]);
     const [movies, setMovies] = React.useState([]);
     const [loading, setLoading] = React.useState(true);
+    const [details, setDetails] = React.useState({
+      plot: '',
+      poster: ''
+    })
 
     // const cardComponents = cardarr.map(card => (
     //     <div className="col-3" key={card._id}>
@@ -22,14 +26,15 @@ export default function CardHolder(props) {
         createCards();
     }
 
-    const req1 = async(mn)=>{
-        const _res = await axios.get(`http://www.omdbapi.com/?t=${mn}&apikey=934ea8b2`);
-        let p =  _res.data.Poster;
-        return p;
-    }
-    const req2 = async(mn)=>{
-        const _res = await axios.get(`http://www.omdbapi.com/?t=${mn}&apikey=934ea8b2`);
-        return _res.data.Poster;
+    const req = async(mn)=>{
+        const res = await axios.get(`http://www.omdbapi.com/?t=${mn}&apikey=934ea8b2`);
+        
+        setDetails((prev)=>({
+            ...prev,
+            plot: res.data.Plot,
+            poster: res.data.Poster,
+        }))
+
     }
     const createCards = () => {
         setCards(() => {
@@ -37,11 +42,11 @@ export default function CardHolder(props) {
                 const {movieid,moviename} = movie;
                 
                 const mn = moviename.split(' ').join('+');
-                let Poster,Plot;
-                console.log(req1(mn));
-                
+                req(mn);        
+                console.log(details);
+    
                 return( 
-                    <MovieCard movieName = {moviename} movieId = {movieid} moviePoster={Poster} desc = {Plot}/>
+                    <MovieCard movieName = {moviename} key = {movieid} movieId = {movieid} moviePoster={details.poster} desc = {details.plot}/>
                 )
             })
         });
@@ -52,6 +57,10 @@ export default function CardHolder(props) {
     React.useEffect(() => {
         getMovies();
     },[loading])
+
+    React.useEffect(()=>{
+
+    },[details]);
 
     return (
         <div className="container p-5">
