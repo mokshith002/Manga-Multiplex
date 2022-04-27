@@ -11,3 +11,7 @@ INSERT INTO movie (movieName) VALUES ('Knives Out');
 INSERT INTO movie (movieName) VALUES ('The Prestige');
 INSERT INTO movie (movieName) VALUES ('Forrest Gump');
 INSERT INTO movie (movieName) VALUES ('The Shawshank Redemption');
+INSERT INTO movie (movieName) VALUES ('Inception');
+INSERT INTO movie (movieName) VALUES ('Dune');
+INSERT INTO movie (movieName) VALUES ('Alien');
+INSERT INTO movie (movieName) VALUES ('1917');
