@@ -7,7 +7,8 @@ import { Button, CardActionArea, CardActions } from '@mui/material';
 
 export default function MovieCard(props) {
 
-  const {movieName} = props;
+  const {movieName,movieId,moviePoster,desc} = props;
+  console.log(moviePoster);
 
 
 
@@ -17,22 +18,21 @@ export default function MovieCard(props) {
         <CardMedia
           component="img"
           height="300"
-          image="https://m.media-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_SX300.jpg"
+          image= {moviePoster}
           alt="green iguana"
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
-            Lizard
+            {movieName}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            Lizards are a widespread group of squamate reptiles, with over 6,000
-            species, ranging across all continents except Antarctica
+            {desc}
           </Typography>
         </CardContent>
       </CardActionArea>
       <CardActions>
         <Button size="small" color="primary">
-          Share
+          View
         </Button>
       </CardActions>
     </Card>
