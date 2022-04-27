@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.get('/', controller.getShows);
 router.get('/:id', controller.getShow);
-router.get('/:id/theater-hall', controller.getTheaterHall);
+//router.get('/:id/theater-hall', controller.getTheaterHall);
 router.post('/', controller.addShow);
 router.put('/:id', controller.updateShow);
 router.delete('/:id', controller.deleteShow);

@@ -22,17 +22,16 @@ exports.getEmployee = async (req, res) => {
 
 exports.addEmployee = async (req, res) => {
     try {
-        const {theaterId, empName, contactNo, role, education} = req.body;
-        const newEmp = await db.query(`INSERT INTO employee (
-                theaterId, 
+        const {empName, contactNo, role, education} = req.body;
+        const newEmp = await db.query(`INSERT INTO employee ( 
                 empName, 
                 contactNo, 
                 role, 
                 education
             ) 
-            VALUES($1, $2, $3, $4, $5) 
+            VALUES($1, $2, $3, $4) 
             RETURNING *`, 
-        [theaterId, empName, contactNo, role, education]);
+        [empName, contactNo, role, education]);
         res.json(newEmp.rows[0]);
     } catch (err) {
         res.status(500).json({message: err.message});
@@ -41,18 +40,17 @@ exports.addEmployee = async (req, res) => {
 
 exports.updateEmployee = async (req, res) => {
     try {
-        const {theaterId, empName, contactNo, role, education} = req.body;
+        const {empName, contactNo, role, education} = req.body;
         const {id} = req.params;
         const result = await db.query(`UPDATE employee SET
-                theaterId = $1,
-                empName = $2,
-                contactNo = $3,
-                role = $4,
-                education = $5
-            WHERE empId = $6
+                empName = $1,
+                contactNo = $2,
+                role = $3,
+                education = $4
+            WHERE empId = $5
             RETURNING *
         `,
-         [theaterId, empName, contactNo, role, education, id])
+         [empName, contactNo, role, education, id])
          res.json({message: `User with id ${id} is succesfully updated`, updatedRow: result.rows[0]});
     } catch (err) {
          res.status(500).json({message: err.message});

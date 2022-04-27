@@ -22,7 +22,7 @@ exports.getShow = async (req, res) => {
 exports.getTheaterHall = async (req, res) => {
     try {
         const {id} = req.params;
-        const result = await db.query(`SELECT theaterId, hallNo FROM show WHERE showId = ${id}`);
+        const result = await db.query(`SELECT hallNo FROM show WHERE showId = ${id}`);
         res.json(result.rows[0]);
     } catch (err) {
         res.status(500).json({message: err.message});
@@ -31,17 +31,16 @@ exports.getTheaterHall = async (req, res) => {
 
 exports.addShow = async (req, res) => {
     try {
-        const {hallNo, movieId, theaterId, startTime, endTime} = req.body;
+        const {hallNo, movieId, startTime, endTime} = req.body;
         const newEmp = await db.query(`INSERT INTO show (
             hallNo, 
-            movieId, 
-            theaterId, 
+            movieId,  
             startTime, 
             endTime
             ) 
-            VALUES($1, $2, $3, $4, $5) 
+            VALUES($1, $2, $3, $4) 
             RETURNING *`, 
-        [hallNo, movieId, theaterId, startTime, endTime]);
+        [hallNo, movieId, startTime, endTime]);
         res.json(newEmp.rows[0]);
     } catch (err) {
         res.status(500).json({message: err.message});
@@ -50,18 +49,17 @@ exports.addShow = async (req, res) => {
 
 exports.updateShow = async (req, res) => {
     try {
-        const {hallNo, movieId, theaterId, startTime, endTime} = req.body;
+        const {hallNo, movieId, startTime, endTime} = req.body;
         const {id} = req.params;
         const result = await db.query(`UPDATE show SET
                 hallNo = $1,
                 movieId = $2,
-                theaterId = $3,
-                startTime = $4,
-                endTime = $5
-            WHERE showId = $6
+                startTime = $3,
+                endTime = $4
+            WHERE showId = $5
             RETURNING *
         `,
-         [hallNo, movieId, theaterId, startTime, endTime, id])
+         [hallNo, movieId, startTime, endTime, id])
          res.json({message: `Show with id ${id} is succesfully updated`, updatedRow: result.rows[0]});
     } catch (err) {
          res.status(500).json({message: err.message});
