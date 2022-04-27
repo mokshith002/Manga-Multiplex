@@ -3,8 +3,34 @@ import {NavLink, Link} from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import logo from "../../Images/Manga-Multiplex.jpg";
 import "./NavBar.css";
+import { useHistory } from "react-router-dom";
 
 export default function NavBar() {
+    const history = useHistory();
+    const id = localStorage.getItem('userId');
+
+    const logButt = () => {
+      if(id != undefined){
+        return (
+          <div onClick={()=>{
+            localStorage.removeItem('userId');
+            history.push('/');
+          }}>
+            Logout
+          </div>
+        );
+      }else{
+        return (
+          <div onClick={()=>{
+            history.push('/login');
+          }}>
+            Login
+          </div>
+        );
+      }
+    };
+
+    
   return (
     <>
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -45,7 +71,7 @@ export default function NavBar() {
                   className="ind-link"
                   activeClassName="ind-link-selected"
                 >
-                  Nav 0
+                View Staff
                 </NavLink>
               </li>
               <li class="nav-item nav-link">
@@ -54,7 +80,7 @@ export default function NavBar() {
                   className="ind-link"
                   activeClassName="ind-link-selected"
                 >
-                  Nav 1
+                Book Show
                 </NavLink>
               </li>
               <li class="nav-item nav-link">
@@ -63,25 +89,25 @@ export default function NavBar() {
                   className="ind-link"
                   activeClassName="ind-link-selected"
                 >
-                  Nav 2
+                Edit Profile
                 </NavLink>
               </li>
               <li class="nav-item nav-link">
                 <NavLink
-                  to="/3"
+                  to="/profile"
                   className="ind-link"
                   activeClassName="ind-link-selected"
                 >
-                  Nav 3
+                  <div>Profile</div>
                 </NavLink>
               </li>
               <li class="nav-item nav-link">
                 <NavLink
-                  to="/4"
+                  to="/login"
                   className="ind-link"
                   activeClassName="ind-link-selected"
                 >
-                  Nav 4
+                    {logButt()}
                 </NavLink>
               </li>
             </ul>
