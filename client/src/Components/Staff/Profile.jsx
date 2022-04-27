@@ -87,7 +87,7 @@ export default function App() {
                       <img src={educatioin_png} alt="" />
                     </span>
                     <h5 className="u-custom-font u-font-raleway u-text u-text-default u-text-5">
-                      EDUCATIoN
+                      EDUCATION
                     </h5>
                     <p className="u-text u-text-palette-2-dark-2 u-text-6">
                       Sample text. Click to select the text box.
