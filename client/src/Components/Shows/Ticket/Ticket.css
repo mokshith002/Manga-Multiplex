@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Libre+Bodoni:ital@0;1&display=swap');
 
 .Booking{
-    background-image: url('../../Images/5590822.jpg');
+    background-image: url('../../../Images/5590822.jpg');
 }
 
 .__heading{
@@ -19,11 +19,15 @@
     padding-right: 60px;
     padding-top: 30px;
     padding-bottom: 30px;
-    margin: auto;
+    /* margin: auto; */
     margin-top: 60px;
-    background-image: url('../../Images/xdz-1.jpg');
+    background-image: url('../../../Images/xdz-1.jpg');
     color: white;
     margin-bottom: 100px !important;
+}
+
+._ind-ticket{
+    margin-left: 0px;
 }
 
 ._ticket-id{

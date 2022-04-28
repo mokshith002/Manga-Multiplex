@@ -29,18 +29,9 @@ export default function RegisterForm(params) {
             return;
         }
 
-        await axios.post(`${URL}/employees`,formData)
-        .then(res => {
-            if(res.data.success){
-                history.push('/');
-            }
-            else{
-                alert(res.data.message);
-            }
-        })
-        .catch(
-            err => console.log(err.message)
-        );
+        await axios.post(`${URL}/employees`, formData);
+
+        history.push('/all-staff');
 
         console.log(formData);
     }

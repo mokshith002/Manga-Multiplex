@@ -89,7 +89,12 @@ React.useEffect(() => {
   return (
     <div className="__bg">
       <div className="row text-center __bg">
-        <h2 className="mb-5 _heading ">All Employees</h2>
+        <h2 className="mb-2 _heading ">All Employees</h2>
+      </div>
+      <div class="text-center" style={{ marginTop: 20 }}>
+        <a href="/register" type="button" class="btn btn-dark col-1 mb-5">
+          Add Employee
+        </a>
       </div>
       <div className="" style={{ height: 550, width: "60%", margin: "auto" }}>
         <DataGrid columns={columns} rows={emp} />

@@ -9,10 +9,7 @@ export default function SeatingLayout(props) {
 
     const URL = `http://localhost:${5000}`;
 
-    const {bookSeats, hallId, showId} = props;
-
-    console.log("Props - ", props);
-    
+    const {bookSeats, hallId, showId} = props;    
 
     const [selected, setSelected] = React.useState([]);
     const [booked, setBooked] = React.useState([]);

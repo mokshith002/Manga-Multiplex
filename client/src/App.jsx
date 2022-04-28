@@ -4,14 +4,13 @@ import Login from './Components/Login/Login';
 import Register from './Components/Login/Register';
 import Booking from "./Components/Shows/Booking";
 import SeatingLayout from "./Components/Shows/Seating/SeatingLayout";
-import Ticket from "./Components/Shows/Ticket"; 
 import NavBar from "./Components/NavBar/NavBar";
 import Home from "./Components/Home/Home";
 import Viewemp from "./Components/Manager/Viewemp";
 import Profile from "./Components/Staff/Profile";
 import Movie from "./Components/Shows/Movie/Movie"
 import MovieCard from "./Components/Shows/Card/MovieCardHolder";
-import Update from "./Components/Login/Update";
+import Update from "./Components/Staff/Update";
 import EmpProfile from "./Components/Manager/EmpProfile"
 
 function App() {

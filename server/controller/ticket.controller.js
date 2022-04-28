@@ -21,16 +21,16 @@ exports.getTicket = async (req, res) => {
 
 exports.addTicket = async (req, res) => {
     try {
-        const {showId, employeeId, seatNo, price} = req.body;
+        const {showId, employeeId, seatNo} = req.body;
+        console.log('Line 25', showId, employeeId, seatNo);
         const newEmp = await db.query(`INSERT INTO ticket (
             showId, 
             employeeId, 
-            seatNo, 
-            price
+            seatNo
             ) 
-            VALUES($1, $2, $3, $4) 
+            VALUES($1, $2, $3) 
             RETURNING *`, 
-        [showId, employeeId, seatNo, price]);
+        [showId, employeeId, seatNo]);
         res.json(newEmp.rows[0]);
     } catch (err) {
         res.status(500).json({message: err.message});

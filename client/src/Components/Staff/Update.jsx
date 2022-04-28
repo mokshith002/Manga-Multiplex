@@ -1,6 +1,6 @@
 import React from 'react';
 import UpdateForm from './UpdateForm';
-import "./Login.css"
+import "../Login/Login.css"
 
 export default function Register() {
 

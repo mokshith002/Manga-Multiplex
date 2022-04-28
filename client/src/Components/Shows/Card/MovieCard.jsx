@@ -3,7 +3,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { Button, CardActionArea, CardActions } from '@mui/material';
+import { Button, CardActionArea, CardActions, ButtonBase } from '@mui/material';
 import { shadows } from "@mui/system";
 import "./Cards.css";
 
@@ -16,25 +16,27 @@ export default function MovieCard(props) {
   return (
     
       <Card sx={{ maxWidth: 250, boxShawdow: 5 }} className="_movie-card">
-        <CardActionArea>
-          <CardMedia
-            component="img"
-            height="300"
-            image={poster}
-            alt="green iguana"
-            width="100%"
-          />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-              {name}
-            </Typography>
-          </CardContent>
-        </CardActionArea>
-        <CardActions>
-          <Button size="small" color="success" onClick={() => {handleClick(id)}}>
-            Book
-          </Button>
-        </CardActions>
+        <ButtonBase onClick={() => {handleClick(id)}}>
+          <CardActionArea>
+            <CardMedia
+              component="img"
+              height="300"
+              image={poster}
+              alt="green iguana"
+              width="100%"
+            />
+            <CardContent>
+              <Typography gutterBottom variant="h5" component="div">
+                {name}
+              </Typography>
+            </CardContent>
+          </CardActionArea>
+          {/* <CardActions>
+            <Button size="small" color="success" onClick={() => {handleClick(id)}}>
+              Book
+            </Button>
+          </CardActions> */}
+        </ButtonBase>
       </Card>
     
   );
