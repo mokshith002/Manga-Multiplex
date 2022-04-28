@@ -66,3 +66,13 @@ exports.deleteTicket = async (req, res) => {
         res.status(500).json({message: err.message});
     }
 }
+
+exports.ticketCount = async (req, res) => {
+    try {
+        const {id} = req.params;
+        const result = await db.query(`SELECT COUNT(*) FROM ticket WHERE employeeId = ${id}`);
+        res.json(result.rows[0]);
+    } catch (err) {
+        res.status(500).json({message: err.message});
+    }
+}

@@ -5,81 +5,54 @@ import FileCopyIcon from '@mui/icons-material/FileCopy';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import axios from "axios";
 import "./R.css";
-// const initialRows = [
-//   {
-//     id: 1,
-//     name: 'Damien',
-//     email:'1234@gmail.com',
-//     role:'counter staff'
-//   },
-//   {
-//     id: 2,
-//     name: 'Damien',
-//     email:'1234@gmail.com',
-//     role:'counter staff'
-//   },
-//   {
-//     id: 3,
-//     name: 'Damien',
-//     email:'1234@gmail.com',
-//     role:'counter staff'
-//   },
-//   {
-//     id: 4,
-//     name: 'Damien',
-//     email:'1234@gmail.com',
-//     role:'counter staff'
-//   },
-//   {
-//     id: 5,
-//     name: 'Damien',
-//     email:'1234@gmail.com',
-//     role:'counter staff'
-//   },
-// ];
+import { useHistory } from 'react-router-dom';
 
 
 
 export default function Grid() {
 
+  const history = useHistory();
   const [emp, setEmp] = React.useState([]);
+  const [reload, setReload] = React.useState(false);
 
-const URL = `http://localhost:${5000}`;
+const URL = process.env.REACT_APP_SERVER;
 
 const getEmps = async () => {
-  const res = await axios.get(`${URL}/movie`);
-  setEmp(res.data.map(_emp => ({
-    id: _emp.movieid,
-    name: _emp.moviename
-  })))
+  const res = await axios.get(`${URL}/employees`);
+  console.log(res.data[0].contactno);
+  setEmp(
+    res.data.map((_emp) => ({
+      id: _emp.empid,
+      name: _emp.empname,
+      role: _emp.role,
+      contact: _emp.contactno,
+      email: _emp.email
+    }))
+  );
+
+  setReload(false);
 }
 
 React.useEffect(() => {
   getEmps();
-})
+},[reload])
   // const [rows, setRows] = React.useState(emp);
 
-  const deleteUser = React.useCallback(
-    (id) => () => {
-      setTimeout(() => {
-        setEmp((prevEmp) => prevEmp.filter((row) => row.id !== id));
-      });
-    },
-    [],
-  );
-  const viewEmp = React.useCallback(
-    (id) => () => {
-      setTimeout(() => {
-        setEmp((prevEmp) => prevEmp.filter((row) => row.id !== id));
-      });
-    },
-    [],
-  );
+  const deleteUser = async (id) => {
+    await axios.delete(`${URL}/employees/${id}`);
+    setReload(true);
+  };
+  const viewEmp = async (id) => {
+    history.push(`/profile/${id}`);
+  }
 
   const columns = React.useMemo(
     () => [
-      { field: 'id', headerName: 'Movie ID', type: 'string', headerAlign: 'center', align: 'center', flex:1 },
-      { field: 'name',  headerName: 'Movie Name', type: 'string', headerAlign: 'center', align: 'center', flex:2},
+      { field: 'id', headerName: 'Employee ID', type: 'string', headerAlign: 'center', align: 'center', flex:1 },
+      { field: 'name',  headerName: 'Employee Name', type: 'string', headerAlign: 'center', align: 'center', flex:2},
+      { field: 'role', headerName: 'Role', type: 'string', headerAlign: 'center', align: 'center', flex:1 },
+      { field: 'contact',  headerName: 'Contact Number', type: 'string', headerAlign: 'center', align: 'center', flex:2},
+      { field: 'email',  headerName: 'Email', type: 'string', headerAlign: 'center', align: 'center', flex:2},
       
       {
         field: 'del',
@@ -91,7 +64,7 @@ React.useEffect(() => {
           <GridActionsCellItem
             icon={<DeleteIcon />}
             label="Delete"
-            onClick={deleteUser(params.id)}
+            onClick={ () => {deleteUser(params.id)}}
           />,
         ],
       },
@@ -105,7 +78,7 @@ React.useEffect(() => {
           <GridActionsCellItem
             icon={<ArrowForwardIcon />}
             label="View More"
-            onClick={viewEmp(params.id)}
+            onClick={() => {viewEmp(params.id)}}
           />,
         ],
       },
@@ -116,7 +89,7 @@ React.useEffect(() => {
   return (
     <div className="__bg">
       <div className="row text-center __bg">
-        <h2 className="mb-5 _heading ">All Movies</h2>
+        <h2 className="mb-5 _heading ">All Employees</h2>
       </div>
       <div className="" style={{ height: 550, width: "60%", margin: "auto" }}>
         <DataGrid columns={columns} rows={emp} />

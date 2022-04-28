@@ -14,7 +14,7 @@ function Ticket(props) {
 
     const handleClick = () => {
       localStorage.removeItem('moviePoster');
-      history.push('/');
+      history.push('/movies');
     }
     
     return (

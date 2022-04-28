@@ -8,6 +8,6 @@ router.get('/:id', controller.getEmployee);
 router.post('/', controller.addEmployee);
 router.put('/:id', controller.updateEmployee);
 router.delete('/:id', controller.deleteEmployee);
-router.get('/authenticate/details', controller.authenticateEmployee);
+router.post('/authenticate/details', controller.authenticateEmployee);
 
 module.exports = router;

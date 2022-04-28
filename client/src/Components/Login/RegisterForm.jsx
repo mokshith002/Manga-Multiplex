@@ -22,14 +22,14 @@ export default function RegisterForm(params) {
     })
 
 
-    const submitRegister = () => {
+    const submitRegister = async () => {
 
         if(formData.password !== formData.confirmPass){
             alert("Passwords do not match!");
             return;
         }
 
-        axios.post(`${URL}/employees`,formData)
+        await axios.post(`${URL}/employees`,formData)
         .then(res => {
             if(res.data.success){
                 history.push('/');
@@ -47,6 +47,7 @@ export default function RegisterForm(params) {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        console.log(formData);
         submitRegister();
     }
 
@@ -59,7 +60,7 @@ export default function RegisterForm(params) {
     }
 
     return (
-      <div class="flex-shrink needs-validation mt-5 pt-5 mt-3" noValidate>
+      <div class="flex-shrink needs-validation mt-1 pt-5" noValidate>
         <form onSubmit={handleSubmit}>
           <div class="row">
             {" "}

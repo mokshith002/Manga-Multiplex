@@ -22,16 +22,16 @@ exports.getEmployee = async (req, res) => {
 
 exports.addEmployee = async (req, res) => {
     try {
-        const {empName, contactNo, role, education} = req.body;
+        const {empName, contactNo, role, password, email,  education} = req.body;
+        console.log(req.body);
+        const passwordHash = await bcrypt.hash(password,12);
+        console.log(passwordHash.length);
         const newEmp = await db.query(`INSERT INTO employee ( 
-                empName, 
-                contactNo, 
-                role, 
-                education
+                email, passwordHash, empName, contactNo, role, education
             ) 
-            VALUES($1, $2, $3, $4) 
+            VALUES($1, $2, $3, $4, $5, $6) 
             RETURNING *`, 
-        [empName, contactNo, role, education]);
+        [email, passwordHash, empName, contactNo, role, education]);
         res.json(newEmp.rows[0]);
     } catch (err) {
         res.status(500).json({message: err.message});
@@ -40,17 +40,17 @@ exports.addEmployee = async (req, res) => {
 
 exports.updateEmployee = async (req, res) => {
     try {
-        const {empName, contactNo, role, education} = req.body;
+        const {empName, contactNo, email, education} = req.body;
         const {id} = req.params;
         const result = await db.query(`UPDATE employee SET
                 empName = $1,
                 contactNo = $2,
-                role = $3,
+                email = $3,
                 education = $4
             WHERE empId = $5
             RETURNING *
         `,
-         [empName, contactNo, role, education, id])
+         [empName, contactNo, email, education, id])
          res.json({message: `User with id ${id} is succesfully updated`, updatedRow: result.rows[0]});
     } catch (err) {
          res.status(500).json({message: err.message});
@@ -69,13 +69,14 @@ exports.deleteEmployee = async (req, res) => {
 
 exports.authenticateEmployee = async (req, res) => {
     try {
-        const {email, password} = req.query;
-        const result = await db.query('SELECT empId, passwordHash FROM employee WHERE email=$1', [email]);
-        if (!result.rows.length) return res.status(200).json({ success: false });
-        const {passwordHash, empId} = result.rows[0];
-        const isPasswordCorrect = await bcrypt.compare(password, passwordHash);
+        const {email, password} = req.body;
+        console.log(req.body);
+        const result = await db.query('SELECT empId, passwordHash, role FROM employee WHERE email=$1', [email]);
+        if (!result.rows.length) return res.status(200).json({ success: false, message: 'Email does not exist' });
+        const {passwordhash, empid, role} = result.rows[0];
+        const isPasswordCorrect = await bcrypt.compare(password, passwordhash);
          if (!isPasswordCorrect) return res.status(200).json({ success: false });
-      res.status(200).send({success: true, empId: empId});
+        res.status(200).send({success: true, empId: empid, role: role});
     } catch (err) {
         res.status(500).json({message: err.message})
     }

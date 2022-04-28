@@ -10,6 +10,8 @@ export default function SeatingLayout(props) {
     const URL = `http://localhost:${5000}`;
 
     const {bookSeats, hallId, showId} = props;
+
+    console.log("Props - ", props);
     
 
     const [selected, setSelected] = React.useState([]);
@@ -20,7 +22,8 @@ export default function SeatingLayout(props) {
     const seats = [];
 
     const getSeats = async () => {
-        const res = await axios.get(`${URL}/hall/${hallId}/${showId}/seats`);
+        const res = await axios.get(`${URL}/hall/${showId}/seats`);
+        console.log(res.data);
         for(let i = 0; i < 26; i++)
             seats.push([]);
         res.data.forEach((ele) => {

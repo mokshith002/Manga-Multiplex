@@ -14,6 +14,7 @@ export default function NavBar() {
         return (
           <div onClick={()=>{
             localStorage.removeItem('userId');
+            localStorage.removeItem('userRole');
             history.push('/');
           }}>
             Logout
@@ -67,7 +68,7 @@ export default function NavBar() {
             <ul class="navbar-nav link-container">
               <li class="nav-item nav-link">
                 <NavLink
-                  to="/0"
+                  to="all-staff"
                   className="ind-link"
                   activeClassName="ind-link-selected"
                 >
@@ -76,7 +77,7 @@ export default function NavBar() {
               </li>
               <li class="nav-item nav-link">
                 <NavLink
-                  to="/1"
+                  to="/movies"
                   className="ind-link"
                   activeClassName="ind-link-selected"
                 >
@@ -85,7 +86,7 @@ export default function NavBar() {
               </li>
               <li class="nav-item nav-link">
                 <NavLink
-                  to="/2"
+                  to="/edit/my-profile"
                   className="ind-link"
                   activeClassName="ind-link-selected"
                 >
@@ -94,7 +95,7 @@ export default function NavBar() {
               </li>
               <li class="nav-item nav-link">
                 <NavLink
-                  to="/profile"
+                  to="/my-profile"
                   className="ind-link"
                   activeClassName="ind-link-selected"
                 >

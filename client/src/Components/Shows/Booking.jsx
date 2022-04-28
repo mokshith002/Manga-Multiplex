@@ -46,8 +46,8 @@ export default function Booking() {
     },[booked]);
 
     const bookSeats = async (selected) => {
-        console.log(selected);
         if(selected.length){
+          console.log(selected);
             await axios.put(`${URL}/hall/seats/book`, {showId:show.showId, hallId:show.hallId, seats:selected});
             setShow(prev => ({
                 ...prev,

@@ -3,13 +3,15 @@ import RegisterForm from './RegisterForm';
 
 export default function Register() {
 
-    return(
-      
-        <div class='d-flex p-3 justify-content-center align-items-center' style={{height: "70vh"}}>
-
-            <RegisterForm/>
-          
+    return (
+      <div className="_register-page">
+        <div
+          className="d-flex p-5 justify-content-center align-items-center"
+          style={{ height: "88vh" }}
+        >
+          <RegisterForm />
         </div>
-    )
+      </div>
+    );
 }
 

@@ -52,7 +52,7 @@ export default function App(){
                   theatre..
                 </p>
                 <a
-                  href="Seat-Booking.html"
+                  href="/movies"
                   data-page-id="678306798"
                   className="u-active-palette-3-base u-btn u-button-style u-hover-palette-3-base u-white u-btn-1"
                   >BOOK NOW</a
@@ -94,9 +94,9 @@ export default function App(){
             pick what suits you.
           </p>
           <a
-            href="https://nicepage.com/wordpress-themes"
+            href="/login"
             className="u-active-palette-3-dark-3 u-btn u-btn-round u-button-style u-hover-palette-3-dark-3 u-palette-3-base u-radius-50 u-btn-1"
-            target="_blank"
+            // target="_blank"
             >LOGIN</a
           >
         </div>

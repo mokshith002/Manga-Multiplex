@@ -1,6 +1,30 @@
  .u-section-1 {
-  background-image: url("../../Images/1f9ef0c80ee831e0823211744ac877a410657295d15fddd737251bc5c43200c9e180803bdd12146103feaeb7cc41d9e295aea8dc53e405310f8b8e_1280.jpg") !important;
+  background-image: url("../../Images/1f9ef0c80ee831e0823211744ac877a410657295d15fddd737251bc5c43200c9e180803bdd12146103feaeb7cc41d9e295aea8dc53e405310f8b8e_1280.jpg")  !important;
   background-position: 50% 50%;
+}
+
+._form-1{
+  width: 25%;
+  margin: auto;
+  margin-top: 0;
+}
+
+._update-page{
+  background-image: url(../../Images/5590822.jpg);
+  height: 100%;
+}
+
+._update-form{
+  margin-top: none;
+  padding-top: 0;
+}
+
+._register-page{
+  background-image: url(../../Images/5590822.jpg);
+}
+
+._update-form-btn{
+  margin: auto;
 }
 
 .u-section-1 .u-sheet-1 {

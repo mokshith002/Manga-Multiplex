@@ -1,39 +1,41 @@
-import React, {useState, useEffect} from "react";
-import "./Profile.css";
+import React, { useEffect, useState } from "react";
+import "./EmpProfile.css";
 import detail_png from "../../Images/6592963.png";
 import educatioin_png from "../../Images/2232688.png";
 import role_png from "../../Images/681392.png";
-import axios from "axios";
-
+import { useParams } from "react-router-dom";
+import axios from 'axios';
 
 export default function App() {
-  const S_URL = process.env.REACT_APP_SERVER;
-  const id  = localStorage.getItem('userId');
 
-  const [details, setDetails] = useState({
-    empname: "",
-    role: "",
-    education: "",
-  });
-  const [tickets, setTickets] = useState(0);
+    const S_URL = process.env.REACT_APP_SERVER;
 
+    const [details, setDetails] = useState({
+        empname: '',
+        role: '',
+        education: '',
+    });
+    const [tickets, setTickets] = useState(0);
 
-  const getDetails = async () => {
-    const res = await axios.get(`${S_URL}/employees/${id}`);
-    console.log(res.data);
-    setDetails(res.data);
-  };
+    const {id} = useParams();
 
-  const getTickets = async () => {
-    const _res = await axios.get(`${S_URL}/ticket/tickets-sold/${id}`);
-    console.log(_res.data);
-    setTickets(_res.data.count);
-  };
+    const getDetails = async () => {
+        const res = await axios.get(`${S_URL}/employees/${id}`);
+        console.log(res.data);
+        setDetails(res.data);
+    }
 
-  useEffect(() => {
-    getDetails();
-    getTickets();
-  }, []);
+    const getTickets = async () => {
+        const _res = await axios.get(`${S_URL}/ticket/tickets-sold/${id}`);
+        console.log(_res.data);
+        setTickets(_res.data.count);
+    }
+
+    useEffect(() => {
+        getDetails();
+        getTickets();
+    },[])
+
 
   return (
     <>

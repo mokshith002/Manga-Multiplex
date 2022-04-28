@@ -10,7 +10,9 @@ import Home from "./Components/Home/Home";
 import Viewemp from "./Components/Manager/Viewemp";
 import Profile from "./Components/Staff/Profile";
 import Movie from "./Components/Shows/Movie/Movie"
-import MovieCard from "./Components/Shows/Card/MovieCard";
+import MovieCard from "./Components/Shows/Card/MovieCardHolder";
+import Update from "./Components/Login/Update";
+import EmpProfile from "./Components/Manager/EmpProfile"
 
 function App() {
     
@@ -24,7 +26,9 @@ function App() {
                     <Route path="/register"> <Register /> </Route> 
                     <Route path="/booking"> <Booking /> </Route>
                     <Route path="/all-staff"> <Viewemp /> </Route>
-                    <Route path="/profile"> <Profile /></Route>
+                    <Route path="/edit/my-profile"> <Update /></Route>
+                    <Route path="/my-profile"> <Profile /></Route>
+                    <Route path="/profile/:id"> <EmpProfile /></Route>
                     <Route path="/movies"> <MovieCard /></Route>
                     <Route path="/movie/:movieId"> <Movie /></Route>
                 </Switch>

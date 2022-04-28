@@ -12,7 +12,9 @@ exports.getShows = async (req, res) => {
 exports.getShow = async (req, res) => {
     try {
         const {id} = req.params;
+        console.log(id);
          const result = await db.query(`SELECT * FROM show WHERE showId = ${id}`);
+         console.log(result.rows[0]);
         res.json(result.rows[0]);
     } catch (err) {
          res.status(500).json({message: err.message});

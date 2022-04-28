@@ -4,37 +4,38 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Button, CardActionArea, CardActions } from '@mui/material';
+import { shadows } from "@mui/system";
+import "./Cards.css";
 
 export default function MovieCard(props) {
 
-  const {movieName} = props;
+  const {name, plot, poster, id, handleClick} = props;
 
 
 
   return (
-    <Card sx={{ maxWidth: 250 }}>
-      <CardActionArea>
-        <CardMedia
-          component="img"
-          height="300"
-          image="https://m.media-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_SX300.jpg"
-          alt="green iguana"
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
-            Lizard
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            Lizards are a widespread group of squamate reptiles, with over 6,000
-            species, ranging across all continents except Antarctica
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-      <CardActions>
-        <Button size="small" color="primary">
-          Share
-        </Button>
-      </CardActions>
-    </Card>
+    
+      <Card sx={{ maxWidth: 250, boxShawdow: 5 }} className="_movie-card">
+        <CardActionArea>
+          <CardMedia
+            component="img"
+            height="300"
+            image={poster}
+            alt="green iguana"
+            width="100%"
+          />
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="div">
+              {name}
+            </Typography>
+          </CardContent>
+        </CardActionArea>
+        <CardActions>
+          <Button size="small" color="success" onClick={() => {handleClick(id)}}>
+            Book
+          </Button>
+        </CardActions>
+      </Card>
+    
   );
 }
