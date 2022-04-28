@@ -20,9 +20,9 @@ export default function Booking() {
   const { search } = useLocation();
 
   const history = useHistory();
-  // history.go(0);
+  
+  if(!localStorage.getItem('userId')) history.push('/login');
 
-  // let [searchParams, setSearchParams] = useSearchParams();
   const searchParams = new URLSearchParams(search);
 
   const showId = searchParams.get("showId");

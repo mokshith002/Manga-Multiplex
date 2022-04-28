@@ -8,6 +8,8 @@ export default function CardHolder(props) {
     
     const history = useHistory();
 
+    if(!localStorage.getItem('userId')) history.push('/login');
+
     const O_URL = process.env.REACT_APP_OMDB_URL;
     const O_KEY = process.env.REACT_APP_OMDB_KEY;
     const S_URL = process.env.REACT_APP_SERVER;

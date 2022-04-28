@@ -4,11 +4,17 @@ import detail_png from "../../Images/6592963.png";
 import educatioin_png from "../../Images/2232688.png";
 import role_png from "../../Images/681392.png";
 import axios from "axios";
-
+import { useHistory } from "react-router-dom";
 
 export default function App() {
   const S_URL = process.env.REACT_APP_SERVER;
   const id  = localStorage.getItem('userId');
+
+  const history = useHistory();
+
+  if(!id){
+    history.push('/login');
+  }
 
   const [details, setDetails] = useState({
     empname: "",

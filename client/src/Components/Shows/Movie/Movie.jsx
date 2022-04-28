@@ -14,6 +14,8 @@ export default function Movie() {
 
     const history = useHistory();
 
+    if(!localStorage.getItem('userId')) history.push('/login');
+
  
     const [details, setDetails] = useState({
       name: '',
