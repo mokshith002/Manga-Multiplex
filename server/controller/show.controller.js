@@ -9,6 +9,25 @@ exports.getShows = async (req, res) => {
     }   
 }
 
+exports.getShowsMovieName = async (req, res) => {
+    try {
+        const results = await db.query("SELECT showid, moviename, hallno, price, starttime FROM show s, movie m WHERE s.movieid=m.movieid");
+        res.json(results.rows);
+    } catch (err) {
+         res.status(500).json({message: err.message});
+    }
+}
+
+exports.getShowMovieName = async (req, res) => {
+    try {
+        const {id} = req.params
+        const results = await db.query(`SELECT showid, m.movieid, moviename, hallno, price, starttime FROM show s, movie m WHERE s.movieid=m.movieid AND s.showid=${id}`);
+        res.json(results.rows[0]);
+    } catch (err) {
+         res.status(500).json({message: err.message});
+    }
+}
+
 exports.getShow = async (req, res) => {
     try {
         const {id} = req.params;
@@ -49,17 +68,17 @@ exports.addShow = async (req, res) => {
 
 exports.updateShow = async (req, res) => {
     try {
-        const {hallNo, movieId, startTime, endTime} = req.body;
+        const {hallNo, movieId, startTime, price} = req.body;
         const {id} = req.params;
         const result = await db.query(`UPDATE show SET
                 hallNo = $1,
                 movieId = $2,
                 startTime = $3,
-                endTime = $4
+                price = $4
             WHERE showId = $5
             RETURNING *
         `,
-         [hallNo, movieId, startTime, endTime, id])
+         [hallNo, movieId, startTime, price, id])
          res.json({message: `Show with id ${id} is succesfully updated`, updatedRow: result.rows[0]});
     } catch (err) {
          res.status(500).json({message: err.message});

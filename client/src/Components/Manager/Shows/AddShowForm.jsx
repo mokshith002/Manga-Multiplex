@@ -102,25 +102,10 @@ export default function AddShowForm(params) {
 
   return (
     <div class="flex-shrink needs-validation mt-1 pt-5" noValidate>
-      <form onSubmit={handleSubmit}>
+      <form>
         <div class="row">
           {" "}
           <h2>Add Show</h2>{" "}
-        </div>
-
-        <div class="mb-3 mt-3">
-          <label for="select1" class="form-label">
-            Select Movie
-          </label>
-          <Select
-            class="form-select"
-            id="select1"
-            name="theaterId"
-            onChange={handleOptionChange}
-            options={movieOptions}
-            required
-          />
-          <div class="invalid-feedback">Please enter a name.</div>
         </div>
 
         <div class="mb-3">
@@ -143,6 +128,21 @@ export default function AddShowForm(params) {
               Add
             </button>
           </div>
+        </div>
+
+        <div class="mb-3 mt-3">
+          <label for="select1" class="form-label">
+            Select Movie
+          </label>
+          <Select
+            class="form-select"
+            id="select1"
+            name="theaterId"
+            onChange={handleOptionChange}
+            options={movieOptions}
+            required
+          />
+          <div class="invalid-feedback">Please enter a name.</div>
         </div>
 
         <div class="row">
@@ -198,7 +198,7 @@ export default function AddShowForm(params) {
           </div>
         </div>
 
-        <button type="submit" class="btn btn-primary">
+        <button type="submit" class="btn btn-primary" onClick={handleSubmit}>
           Submit
         </button>
       </form>

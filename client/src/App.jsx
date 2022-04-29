@@ -11,8 +11,10 @@ import Profile from "./Components/Staff/Profile";
 import Movie from "./Components/Shows/Movie/Movie"
 import MovieCard from "./Components/Shows/Card/MovieCardHolder";
 import Update from "./Components/Staff/Update";
-import EmpProfile from "./Components/Manager/Employees/EmpProfile"
-import AddShow from "./Components/Manager/Shows/AddShow"
+import EmpProfile from "./Components/Manager/Employees/EmpProfile";
+import AddShow from "./Components/Manager/Shows/AddShow";
+import UpdateShow from "./Components/Manager/Shows/UpdateShow";
+import ViewShow from "./Components/Shows/ViewShows"
 
 function App() {
     
@@ -32,6 +34,8 @@ function App() {
                     <Route path="/movies"> <MovieCard /></Route>
                     <Route path="/movie/:movieId"> <Movie /></Route>
                     <Route path="/add-show"> <AddShow /></Route>
+                    <Route path="/edit-show/:id"> <UpdateShow /></Route>
+                    <Route path="/all-shows"> <ViewShow /></Route>
                 </Switch>
             </Router>
         </div>

@@ -31,11 +31,6 @@ export default function MovieCard(props) {
               </Typography>
             </CardContent>
           </CardActionArea>
-          {/* <CardActions>
-            <Button size="small" color="success" onClick={() => {handleClick(id)}}>
-              Book
-            </Button>
-          </CardActions> */}
         </ButtonBase>
       </Card>
     
