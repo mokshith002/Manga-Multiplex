@@ -87,3 +87,12 @@ exports.deleteHall = async (req, res) => {
         res.status(500).json({message: err.message});
     }
 }
+
+exports.getHallIds = async (req, res) => {
+    try {
+        const result = await db.query(`SELECT * FROM hall_id`);
+        res.json(result.rows);
+    } catch (err) {
+        res.status(500).json({message: err.message});
+    }
+}

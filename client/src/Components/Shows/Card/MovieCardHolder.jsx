@@ -79,7 +79,12 @@ export default function CardHolder(props) {
     return (
       <div className="_movie-card-container">
         <div className="row text-center __bg">
-          <h2 className="mb-3 mt-5 _movie-heading ">Select Movie</h2>
+          <h2 className="mb-3 mt-5 _movie-heading ">Select Movie</h2>{" "}
+          <div className="col-12">
+            <div className="btn-dark btn" onClick={() => {history.push('/add-show')}}>
+              Add Show
+            </div>
+          </div>
         </div>
         <div className="container p-5">
           <div className="row row-cols-1 row-cols-md-2 row-cols-xl-3 p-3">

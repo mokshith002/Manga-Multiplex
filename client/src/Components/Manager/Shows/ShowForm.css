@@ -1,0 +1,17 @@
+._add-movie-row{
+    display: flex;
+    margin: auto;
+    width: 100%;
+    /* align-items: center;
+    justify-content: center; */
+}
+
+._add-movie-input{
+    flex: 5;
+    margin-right: 20px;
+    width: 300px;
+}
+
+._add-movie-btn{
+    flex: 1;
+}

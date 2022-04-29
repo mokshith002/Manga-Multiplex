@@ -31,16 +31,16 @@ exports.getTheaterHall = async (req, res) => {
 
 exports.addShow = async (req, res) => {
     try {
-        const {hallNo, movieId, startTime, endTime} = req.body;
+        const {hallNo, movieId, time, price} = req.body;
         const newEmp = await db.query(`INSERT INTO show (
             hallNo, 
             movieId,  
             startTime, 
-            endTime
+            price
             ) 
             VALUES($1, $2, $3, $4) 
             RETURNING *`, 
-        [hallNo, movieId, startTime, endTime]);
+        [hallNo, movieId, time, price]);
         res.json(newEmp.rows[0]);
     } catch (err) {
         res.status(500).json({message: err.message});

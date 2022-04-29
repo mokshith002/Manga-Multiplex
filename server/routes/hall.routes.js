@@ -5,6 +5,7 @@ const router = express.Router();
 
 router.get('/', controller.getHalls);
 router.get('/:id', controller.getHall);
+router.get('/all/id', controller.getHallIds);
 router.get('/:showId/seats', controller.getHallSeats);
 router.post('/', controller.addHall);
 router.put('/:id', controller.updateHall);

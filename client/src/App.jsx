@@ -6,12 +6,13 @@ import Booking from "./Components/Shows/Booking";
 import SeatingLayout from "./Components/Shows/Seating/SeatingLayout";
 import NavBar from "./Components/NavBar/NavBar";
 import Home from "./Components/Home/Home";
-import Viewemp from "./Components/Manager/Viewemp";
+import Viewemp from "./Components/Manager/Employees/Viewemp";
 import Profile from "./Components/Staff/Profile";
 import Movie from "./Components/Shows/Movie/Movie"
 import MovieCard from "./Components/Shows/Card/MovieCardHolder";
 import Update from "./Components/Staff/Update";
-import EmpProfile from "./Components/Manager/EmpProfile"
+import EmpProfile from "./Components/Manager/Employees/EmpProfile"
+import AddShow from "./Components/Manager/Shows/AddShow"
 
 function App() {
     
@@ -30,6 +31,7 @@ function App() {
                     <Route path="/profile/:id"> <EmpProfile /></Route>
                     <Route path="/movies"> <MovieCard /></Route>
                     <Route path="/movie/:movieId"> <Movie /></Route>
+                    <Route path="/add-show"> <AddShow /></Route>
                 </Switch>
             </Router>
         </div>

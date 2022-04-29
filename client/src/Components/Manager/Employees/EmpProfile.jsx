@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "./EmpProfile.css";
-import detail_png from "../../Images/6592963.png";
-import educatioin_png from "../../Images/2232688.png";
-import role_png from "../../Images/681392.png";
+import detail_png from "../../../Images/6592963.png";
+import educatioin_png from "../../../Images/2232688.png";
+import role_png from "../../../Images/681392.png";
 import { useParams, useHistory } from "react-router-dom";
 import axios from 'axios';
-import ManagerOnly from "../ManagerOnly";
+import ManagerOnly from "../../ManagerOnly";
 
 export default function App() {
 

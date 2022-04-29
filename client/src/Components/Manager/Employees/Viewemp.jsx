@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import Grid from './EmpTable';
 import { useHistory } from 'react-router-dom';
-import ManagerOnly from '../ManagerOnly';
+import ManagerOnly from '../../ManagerOnly';
 
 export default function Viewemp() {
 
